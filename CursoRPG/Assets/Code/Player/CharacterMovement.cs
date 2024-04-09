@@ -14,10 +14,11 @@ namespace Player
         [SerializeField]
         private Animator _animator;
 
+        [SerializeField]
+        private PlayerLife _playerLife;
+
         private PlayerAnimations _playerAnimations;
-
         private Vector2 _moveInput;
-
         private Keyboard _keyboard;
 
         private void Awake()
@@ -28,12 +29,14 @@ namespace Player
 
         private void Update()
         {
+            if(!_playerLife.IsPlayerAlive) { return; }
+
             _moveInput = GetMovementInput();
             _playerAnimations.UpdateActualLayer(_moveInput);
 
             if(_moveInput == Vector2.zero) { return; }
 
-            _playerAnimations.SetMovementAnimation(_moveInput);
+            _playerAnimations.PlayMovementAnimation(_moveInput);
         }
 
         private void FixedUpdate()

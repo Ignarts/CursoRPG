@@ -6,20 +6,42 @@ namespace Player
 {
     public class PlayerLife : Life
     {
+        public static PlayerLife Instance;
+
         public static event Action OnLifeIncreased;
         public static event Action OnLifeDecreased;
         public static event Action OnPlayerDefeated;
+        public static event Action OnPlayerRevived;
+        private bool _isPlayerAlive;
 
-        [ContextMenu("Heal")]
-        private void Heal()
+        public bool IsPlayerAlive => _isPlayerAlive;
+
+        protected override void Awake()
         {
-            Heal(10);
+            if(Instance != null)
+            {
+                Destroy(gameObject);
+            }
+            
+            Instance = this;
+
+            base.Awake();
+            _isPlayerAlive = true;
         }
 
-        [ContextMenu("Take Damage")]
-        private void TakeDamage()
+        private void Update()
         {
-            TakeDamage(10);
+            if(CurrentLife <= 0 && _isPlayerAlive)
+            {
+                OnPlayerDefeated?.Invoke();
+                _isPlayerAlive = false;
+            }
+
+            if(CurrentLife > 0 && !_isPlayerAlive)
+            {
+                OnPlayerRevived?.Invoke();
+                _isPlayerAlive = true;
+            }
         }
 
         public override void Heal(float healAmount)
@@ -32,13 +54,6 @@ namespace Player
         {
             base.TakeDamage(damage);
             OnLifeDecreased?.Invoke();
-        }
-
-        protected override void Awake()
-        {
-            base.Awake();
-            OnLifeDecreased?.Invoke();
-            OnPlayerDefeated?.Invoke();
         }
     }
 }

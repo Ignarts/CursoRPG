@@ -9,7 +9,7 @@ namespace Entities
         private float _currentLife;
 
         [SerializeField]
-        private float _maxLife = 100.0f;
+        private float _maxLife;
 
         public float MaxLife => _maxLife;
         public float CurrentLife => _currentLife;

@@ -1,114 +1,124 @@
 using System.Collections;
 using Player;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerLifeManager : MonoBehaviour
+namespace UI
 {
-    [SerializeField]
-    private Image _lifeBar;
-
-    [SerializeField]
-    private Image _hitBarEffect;
-
-    [SerializeField]
-    private PlayerLife _playerLife;
-
-    private float _fillSpeed = 1f;
-    private float _fillDelayedSpeed = 0.3f;
-    private float _hitDelay = 0.7f;
-
-
-    private void Start()
+    public class PlayerLifeManager : MonoBehaviour
     {
-        PlayerLife.OnLifeIncreased += UpdateHealLifeBar;
-        PlayerLife.OnLifeDecreased += UpdateHitLifeBar;
+        [SerializeField]
+        private Image _lifeBar;
 
-        _lifeBar.fillAmount = 1;
-        _hitBarEffect.fillAmount = 1;
-    }
+        [SerializeField]
+        private Image _hitBarEffect;
 
-    private void OnDisable()
-    {
-        PlayerLife.OnLifeIncreased -= UpdateHealLifeBar;
-        PlayerLife.OnLifeDecreased -= UpdateHitLifeBar;
-    }
+        [SerializeField]
+        private TextMeshProUGUI _lifeText;
 
-#region Damage Methods
-    private void UpdateHitLifeBar()
-    {
-        float targetFill = _playerLife.CurrentLife / _playerLife.MaxLife;
+        private float _fillSpeed = 1f;
+        private float _fillDelayedSpeed = 0.3f;
+        private float _hitDelay = 0.7f;
 
-        StartCoroutine(UpdateDamagedFillOverTime(_lifeBar, targetFill));
-
-        StartCoroutine(DelayedUpdateDamagedFillOverTime(_hitBarEffect, targetFill));
-    }
-
-    private IEnumerator UpdateDamagedFillOverTime(Image image, float targetFill)
-    {
-        float currentFill = image.fillAmount;
-        while (currentFill > targetFill)
+        private void Start()
         {
-            currentFill -= _fillSpeed * Time.fixedDeltaTime;
-            image.fillAmount = currentFill;
-            yield return null;
+            PlayerLife.OnLifeIncreased += UpdateHealLifeBar;
+            PlayerLife.OnLifeDecreased += UpdateHitLifeBar;
+
+            _lifeBar.fillAmount = 1;
+            _hitBarEffect.fillAmount = 1;
+
+            UpdateHealLifeBar();
+            UpdateHitLifeBar();
         }
 
-        image.fillAmount = targetFill;
-    }
-
-    private IEnumerator DelayedUpdateDamagedFillOverTime(Image image, float targetFill)
-    {
-        yield return new WaitForSeconds(_hitDelay);
-
-        float currentFill = image.fillAmount;
-        while (currentFill > targetFill)
+        private void OnDisable()
         {
-            currentFill -= _fillDelayedSpeed * Time.fixedDeltaTime;
-            image.fillAmount = currentFill;
-            yield return null;
+            PlayerLife.OnLifeIncreased -= UpdateHealLifeBar;
+            PlayerLife.OnLifeDecreased -= UpdateHitLifeBar;
         }
 
-        image.fillAmount = targetFill;
-    }
-#endregion
-
-#region Heal Methods
-    private void UpdateHealLifeBar()
-    {
-        float targetFill = _playerLife.CurrentLife / _playerLife.MaxLife;
-
-        StartCoroutine(UpdateHealFillOverTime(_hitBarEffect, targetFill));
-
-        StartCoroutine(DelayedUpdateHealFillOverTime(_lifeBar, targetFill));
-    }
-
-    private IEnumerator UpdateHealFillOverTime(Image image, float targetFill)
-    {
-        float currentFill = image.fillAmount;
-        while (currentFill < targetFill)
+        #region Damage Methods
+        private void UpdateHitLifeBar()
         {
-            currentFill += _fillSpeed * Time.fixedDeltaTime;
-            image.fillAmount = currentFill;
-            yield return null;
+            float targetFill = PlayerLife.Instance.CurrentLife / PlayerLife.Instance.MaxLife;
+
+            StartCoroutine(UpdateDamagedFillOverTime(_lifeBar, targetFill));
+
+            StartCoroutine(DelayedUpdateDamagedFillOverTime(_hitBarEffect, targetFill));
+
+            _lifeText.text = PlayerLife.Instance.CurrentLife.ToString() + "/" + PlayerLife.Instance.MaxLife.ToString();
         }
 
-        image.fillAmount = targetFill;
-    }
-
-    private IEnumerator DelayedUpdateHealFillOverTime(Image image, float targetFill)
-    {
-        yield return new WaitForSeconds(_hitDelay);
-
-        float currentFill = image.fillAmount;
-        while (currentFill < targetFill)
+        private IEnumerator UpdateDamagedFillOverTime(Image image, float targetFill)
         {
-            currentFill += _fillDelayedSpeed * Time.fixedDeltaTime;
-            image.fillAmount = currentFill;
-            yield return null;
+            float currentFill = image.fillAmount;
+            while (currentFill > targetFill)
+            {
+                currentFill -= _fillSpeed * Time.fixedDeltaTime;
+                image.fillAmount = currentFill;
+                yield return null;
+            }
+
+            image.fillAmount = targetFill;
         }
 
-        image.fillAmount = targetFill;
+        private IEnumerator DelayedUpdateDamagedFillOverTime(Image image, float targetFill)
+        {
+            yield return new WaitForSeconds(_hitDelay);
+
+            float currentFill = image.fillAmount;
+            while (currentFill > targetFill)
+            {
+                currentFill -= _fillDelayedSpeed * Time.fixedDeltaTime;
+                image.fillAmount = currentFill;
+                yield return null;
+            }
+
+            image.fillAmount = targetFill;
+        }
+        #endregion
+
+        #region Heal Methods
+        private void UpdateHealLifeBar()
+        {
+            float targetFill = PlayerLife.Instance.CurrentLife / PlayerLife.Instance.MaxLife;
+
+            StartCoroutine(UpdateHealFillOverTime(_hitBarEffect, targetFill));
+
+            StartCoroutine(DelayedUpdateHealFillOverTime(_lifeBar, targetFill));
+
+            _lifeText.text = PlayerLife.Instance.CurrentLife.ToString() + "/" + PlayerLife.Instance.MaxLife.ToString();
+        }
+
+        private IEnumerator UpdateHealFillOverTime(Image image, float targetFill)
+        {
+            float currentFill = image.fillAmount;
+            while (currentFill < targetFill)
+            {
+                currentFill += _fillSpeed * Time.fixedDeltaTime;
+                image.fillAmount = currentFill;
+                yield return null;
+            }
+
+            image.fillAmount = targetFill;
+        }
+
+        private IEnumerator DelayedUpdateHealFillOverTime(Image image, float targetFill)
+        {
+            yield return new WaitForSeconds(_hitDelay);
+
+            float currentFill = image.fillAmount;
+            while (currentFill < targetFill)
+            {
+                currentFill += _fillDelayedSpeed * Time.fixedDeltaTime;
+                image.fillAmount = currentFill;
+                yield return null;
+            }
+
+            image.fillAmount = targetFill;
+        }
+        #endregion
     }
-    #endregion
 }

@@ -11,13 +11,22 @@ namespace Player
 
         private const string IDLE_LAYER = "Idle";
         private const string MOVEMENT_LAYER = "Walk";
+        private const string DEFEATED_ANIMATION = "Defeated";
 
         public PlayerAnimations(Animator animator)
         {
             _animator = animator;
+            PlayerLife.OnPlayerDefeated += PlayDefeatAnimation;
+            PlayerLife.OnPlayerRevived += PlayerRevivedAnimation;
         }
 
-        public void SetMovementAnimation(Vector2 moveInput)
+        private void OnDisable()
+        {
+            PlayerLife.OnPlayerDefeated -= PlayDefeatAnimation;
+            PlayerLife.OnPlayerRevived -= PlayerRevivedAnimation;
+        }
+
+        public void PlayMovementAnimation(Vector2 moveInput)
         {
             _animator.SetFloat(HORIZONTAL_MOVE, moveInput.x);
             _animator.SetFloat(VERTICAL_MOVE, moveInput.y);
@@ -43,6 +52,18 @@ namespace Player
             }
 
             _animator.SetLayerWeight(_animator.GetLayerIndex(layerName), 1);
+        }
+
+        private void PlayDefeatAnimation()
+        {
+            ActivateLayer(IDLE_LAYER);
+            _animator.SetBool(DEFEATED_ANIMATION, true);
+        }
+
+        private void PlayerRevivedAnimation()
+        {
+            ActivateLayer(IDLE_LAYER);
+            _animator.SetBool(DEFEATED_ANIMATION, false);
         }
     }
 }
