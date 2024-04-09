@@ -3,6 +3,7 @@ using System.Collections;
 using Player;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class PlayerExperienceManager : MonoBehaviour
@@ -28,24 +29,29 @@ public class PlayerExperienceManager : MonoBehaviour
 
     private void UpdateExperienceBar()
     {
-        StartCoroutine(UpdateDamagedFillOverTime(_expBar, PlayerExperience.Instance.CurrentTemporalExp / PlayerExperience.Instance.NextLevelExp));
+        var targetFill = PlayerExperience.Instance.CurrentTemporalExp / PlayerExperience.Instance.NextLevelExp;
+        StartCoroutine(UpdateDamagedFillOverTime(_expBar, targetFill));
         
-        _experienceText.text = $"Lvl{PlayerExperience.Instance.Level.ToString()}: " +
-            PlayerExperience.Instance.CurrentTemporalExp.ToString()
-            + "/" +
-            PlayerExperience.Instance.NextLevelExp.ToString();
+        _experienceText.text = GetExperienceText();
     }
 
     private IEnumerator UpdateDamagedFillOverTime(Image image, float targetFill)
+    {
+        float currentFill = image.fillAmount;
+        while (Math.Abs(currentFill - targetFill) > float.Epsilon)
         {
-            float currentFill = image.fillAmount;
-            while (currentFill > targetFill)
-            {
-                currentFill -= _fillSpeed * Time.fixedDeltaTime;
-                image.fillAmount = currentFill;
-                yield return null;
-            }
-
-            image.fillAmount = targetFill;
+            currentFill = Mathf.MoveTowards(currentFill, targetFill, _fillSpeed * Time.fixedDeltaTime);
+            image.fillAmount = currentFill;
+            yield return null;
         }
+
+        image.fillAmount = targetFill;
+    }
+
+    private string GetExperienceText()
+    {
+        float expPercentage = PlayerExperience.Instance.CurrentTemporalExp / PlayerExperience.Instance.NextLevelExp;
+
+        return $"{(expPercentage * 100):F0}%";
+    }
 }

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Player
 {
@@ -40,22 +41,23 @@ namespace Player
         {
             Level = 1;
             _nextLevelExp = _baseExp;
+            _currentTemporalExp = 0;
         }
 
-        [ContextMenu("Give Exp")]
-        private void GiveExp()
-        {
-            AddExperience(10);
+        private void Update() {
+            if(Keyboard.current.pKey.wasPressedThisFrame)
+            {
+                AddExperience(1);
+            }
         }
 
         public void AddExperience(float exp)
         {
-            if(exp <= 0) { return; }
+            if (exp <= 0) { return; }
 
-            OnExpGained?.Invoke();
             float expToNextLevel = _nextLevelExp - _currentTemporalExp;
 
-            if(exp >= expToNextLevel)
+            if (exp >= expToNextLevel)
             {
                 exp -= expToNextLevel;
                 UpdateLevel();
@@ -64,11 +66,9 @@ namespace Player
             else
             {
                 _currentTemporalExp += exp;
-                if(_currentTemporalExp == _nextLevelExp)
-                {
-                    UpdateLevel();
-                }
             }
+
+            OnExpGained?.Invoke();
         }
 
         private void UpdateLevel()
