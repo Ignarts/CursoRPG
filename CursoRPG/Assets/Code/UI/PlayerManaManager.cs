@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using Player;
 using TMPro;
@@ -9,6 +8,7 @@ namespace UI
 {
     public class PlayerManaManager : MonoBehaviour
     {
+#region Private Attributes
         [SerializeField]
         private Image _manaBar;
 
@@ -18,11 +18,17 @@ namespace UI
         [SerializeField]
         private TextMeshProUGUI _manaText;
 
+        private PlayerMana _playerMana;
+
         private float _fillSpeed = 1f;
         private float _fillDelayedSpeed = 0.3f;
         private float _previewDelay = 0.7f;
 
         private bool _isManaUsed;
+
+#endregion
+
+#region MonoBehaviour Methods
 
         private void Start()
         {
@@ -47,22 +53,31 @@ namespace UI
             PlayerMana.OnManaUsed -= UpdateManaBar;
         }
 
+#endregion
+
+#region Methods
+
+        public void Configure(PlayerMana playerMana)
+        {
+            _playerMana = playerMana;
+        }
+
         private void UpdateManaBarOnRegeneration()
         {
-            _manaBar.fillAmount = PlayerMana.Instance.CurrentMana / PlayerMana.Instance.MaxMana;
-            _manaUsedBarEffect.fillAmount = PlayerMana.Instance.CurrentMana / PlayerMana.Instance.MaxMana;
-            _manaText.text = PlayerMana.Instance.CurrentMana.ToString() + "/" + PlayerMana.Instance.MaxMana.ToString();
+            _manaBar.fillAmount = _playerMana.CurrentMana / _playerMana.MaxMana;
+            _manaUsedBarEffect.fillAmount = _playerMana.CurrentMana / _playerMana.MaxMana;
+            _manaText.text = _playerMana.CurrentMana.ToString() + "/" + _playerMana.MaxMana.ToString();
         }
 
         private void UpdateManaBar()
         {
-            float targetFill = PlayerMana.Instance.CurrentMana / PlayerMana.Instance.MaxMana;
+            float targetFill = _playerMana.CurrentMana / _playerMana.MaxMana;
 
             StartCoroutine(UpdateDamagedFillOverTime(_manaBar, targetFill));
 
             StartCoroutine(DelayedUpdateDamagedFillOverTime(_manaUsedBarEffect, targetFill));
 
-            _manaText.text = PlayerMana.Instance.CurrentMana.ToString() + "/" + PlayerMana.Instance.MaxMana.ToString();
+            _manaText.text = _playerMana.CurrentMana.ToString() + "/" + _playerMana.MaxMana.ToString();
         }
         
         private IEnumerator UpdateDamagedFillOverTime(Image image, float targetFill)
@@ -94,5 +109,7 @@ namespace UI
             image.fillAmount = targetFill;
             _isManaUsed = false;
         }
+
+#endregion
     }
 }

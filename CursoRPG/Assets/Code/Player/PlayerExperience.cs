@@ -6,7 +6,7 @@ namespace Player
 {
     public class PlayerExperience : MonoBehaviour
     {
-        public static PlayerExperience Instance;
+#region Private Attributes
 
         [SerializeField]
         private int _maxLevel;
@@ -17,25 +17,26 @@ namespace Player
         [SerializeField]
         private float _incrementalExp;
 
-
         private float _currentTemporalExp;
         private float _nextLevelExp;
+
+#endregion
+
+#region Public Attributes
+
+        public static event Action OnExpGained;
+
+#endregion
+
+#region Properties
 
         public int Level { get; private set; }
         public float CurrentTemporalExp => _currentTemporalExp;
         public float NextLevelExp => _nextLevelExp;
 
-        public static event Action OnExpGained;
+#endregion
 
-        private void Awake()
-        {
-            if(Instance != null)
-            {
-                Destroy(gameObject);
-            }
-            
-            Instance = this;
-        }
+#region MonoBehaviour Methods
 
         private void Start()
         {
@@ -50,6 +51,10 @@ namespace Player
                 AddExperience(1);
             }
         }
+
+#endregion
+
+#region Methods
 
         public void AddExperience(float exp)
         {
@@ -79,5 +84,6 @@ namespace Player
             _currentTemporalExp = 0;
             _nextLevelExp *= _incrementalExp;
         }
+#endregion
     }
 }

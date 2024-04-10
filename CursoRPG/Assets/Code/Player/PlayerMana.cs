@@ -26,7 +26,7 @@ namespace Player
 
         protected override void UseMana(int manaAmount)
         {
-            if(!PlayerLife.Instance.IsPlayerAlive) { return; }
+            if(!_playerLife.IsPlayerAlive) { return; }
 
             base.UseMana(manaAmount);
             OnManaUsed?.Invoke();

@@ -8,6 +8,8 @@ namespace UI
 {
     public class PlayerLifeManager : MonoBehaviour
     {
+#region Private Attributes
+
         [SerializeField]
         private Image _lifeBar;
 
@@ -17,9 +19,14 @@ namespace UI
         [SerializeField]
         private TextMeshProUGUI _lifeText;
 
+        private PlayerLife _playerLife;
         private float _fillSpeed = 1f;
         private float _fillDelayedSpeed = 0.3f;
         private float _hitDelay = 0.7f;
+
+#endregion
+
+#region MonoBehaviour Methods
 
         private void Start()
         {
@@ -39,16 +46,28 @@ namespace UI
             PlayerLife.OnLifeDecreased -= UpdateHitLifeBar;
         }
 
-        #region Damage Methods
+#endregion
+
+#region Methods
+
+        public void Configure(PlayerLife playerLife)
+        {
+            _playerLife = playerLife;
+        }
+
+#endregion
+
+#region Damage Methods
+
         private void UpdateHitLifeBar()
         {
-            float targetFill = PlayerLife.Instance.CurrentLife / PlayerLife.Instance.MaxLife;
+            float targetFill = _playerLife.CurrentLife / _playerLife.MaxLife;
 
             StartCoroutine(UpdateDamagedFillOverTime(_lifeBar, targetFill));
 
             StartCoroutine(DelayedUpdateDamagedFillOverTime(_hitBarEffect, targetFill));
 
-            _lifeText.text = PlayerLife.Instance.CurrentLife.ToString() + "/" + PlayerLife.Instance.MaxLife.ToString();
+            _lifeText.text = _playerLife.CurrentLife.ToString() + "/" + _playerLife.MaxLife.ToString();
         }
 
         private IEnumerator UpdateDamagedFillOverTime(Image image, float targetFill)
@@ -78,18 +97,19 @@ namespace UI
 
             image.fillAmount = targetFill;
         }
-        #endregion
+#endregion
 
-        #region Heal Methods
+#region Heal Methods
+
         private void UpdateHealLifeBar()
         {
-            float targetFill = PlayerLife.Instance.CurrentLife / PlayerLife.Instance.MaxLife;
+            float targetFill = _playerLife.CurrentLife / _playerLife.MaxLife;
 
             StartCoroutine(UpdateHealFillOverTime(_hitBarEffect, targetFill));
 
             StartCoroutine(DelayedUpdateHealFillOverTime(_lifeBar, targetFill));
 
-            _lifeText.text = PlayerLife.Instance.CurrentLife.ToString() + "/" + PlayerLife.Instance.MaxLife.ToString();
+            _lifeText.text = _playerLife.CurrentLife.ToString() + "/" + _playerLife.MaxLife.ToString();
         }
 
         private IEnumerator UpdateHealFillOverTime(Image image, float targetFill)
@@ -119,6 +139,7 @@ namespace UI
 
             image.fillAmount = targetFill;
         }
-        #endregion
+        
+#endregion
     }
 }

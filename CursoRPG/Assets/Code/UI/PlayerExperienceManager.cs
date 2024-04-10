@@ -3,55 +3,75 @@ using System.Collections;
 using Player;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class PlayerExperienceManager : MonoBehaviour
+namespace UI
 {
-    [SerializeField]
-    private Image _expBar;
-
-    [SerializeField]
-    private TextMeshProUGUI _experienceText;
-
-    private float _fillSpeed = 1f;
-
-    private void Start()
+    public class PlayerExperienceManager : MonoBehaviour
     {
-        PlayerExperience.OnExpGained += UpdateExperienceBar;
-        UpdateExperienceBar();
-    }
+#region Private Attributes
 
-    private void OnDisable()
-    {
-        PlayerExperience.OnExpGained -= UpdateExperienceBar;
-    }
+        [SerializeField]
+        private Image _expBar;
 
-    private void UpdateExperienceBar()
-    {
-        var targetFill = PlayerExperience.Instance.CurrentTemporalExp / PlayerExperience.Instance.NextLevelExp;
-        StartCoroutine(UpdateDamagedFillOverTime(_expBar, targetFill));
-        
-        _experienceText.text = GetExperienceText();
-    }
+        [SerializeField]
+        private TextMeshProUGUI _experienceText;
 
-    private IEnumerator UpdateDamagedFillOverTime(Image image, float targetFill)
-    {
-        float currentFill = image.fillAmount;
-        while (Math.Abs(currentFill - targetFill) > float.Epsilon)
+        private PlayerExperience _playerExperience;
+        private float _fillSpeed = 1f;
+
+#endregion
+
+#region MonoBehaviour Methods
+
+        private void Start()
         {
-            currentFill = Mathf.MoveTowards(currentFill, targetFill, _fillSpeed * Time.fixedDeltaTime);
-            image.fillAmount = currentFill;
-            yield return null;
+            PlayerExperience.OnExpGained += UpdateExperienceBar;
+            UpdateExperienceBar();
         }
 
-        image.fillAmount = targetFill;
-    }
+        private void OnDisable()
+        {
+            PlayerExperience.OnExpGained -= UpdateExperienceBar;
+        }
 
-    private string GetExperienceText()
-    {
-        float expPercentage = PlayerExperience.Instance.CurrentTemporalExp / PlayerExperience.Instance.NextLevelExp;
+#endregion
 
-        return $"{(expPercentage * 100):F0}%";
+#region Methods
+
+        public void Configure(PlayerExperience playerExperience)
+        {
+            _playerExperience = playerExperience;
+        }
+
+        private void UpdateExperienceBar()
+        {
+            var targetFill = _playerExperience.CurrentTemporalExp / _playerExperience.NextLevelExp;
+            StartCoroutine(UpdateDamagedFillOverTime(_expBar, targetFill));
+
+            _experienceText.text = GetExperienceText();
+        }
+
+        private IEnumerator UpdateDamagedFillOverTime(Image image, float targetFill)
+        {
+            float currentFill = image.fillAmount;
+            while (Math.Abs(currentFill - targetFill) > float.Epsilon)
+            {
+                currentFill = Mathf.MoveTowards(currentFill, targetFill, _fillSpeed * Time.fixedDeltaTime);
+                image.fillAmount = currentFill;
+                yield return null;
+            }
+
+            image.fillAmount = targetFill;
+        }
+
+        private string GetExperienceText()
+        {
+            float expPercentage = _playerExperience.CurrentTemporalExp / _playerExperience.NextLevelExp;
+
+            return $"{(expPercentage * 100):F0}%";
+        }
+        
+#endregion
     }
 }

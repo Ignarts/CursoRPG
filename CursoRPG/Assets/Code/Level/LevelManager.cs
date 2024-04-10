@@ -7,13 +7,26 @@ namespace Level
 {
     public class LevelManager : MonoBehaviour
     {
+#region Private Attributes
+
         [SerializeField]
         private Transform _playerSpawnPoint;
+
+        [SerializeField] private PlayerMana _playerMana;
+        [SerializeField] private PlayerLife _playerLife;
+
+#endregion
+
+#region MonoBehaviour Methods
 
         private void Awake()
         {
             PlayerLife.OnPlayerDefeated += RespawnPlayer;
         }
+
+#endregion
+
+#region Methods
 
         private void RespawnPlayer()
         {
@@ -23,12 +36,13 @@ namespace Level
         private IEnumerator RespawnPlayerAtPosition()
         {
             yield return new WaitForSeconds(1.5f);
-            var playerLife = PlayerLife.Instance;
 
-            playerLife.Heal(playerLife.MaxLife);
-            playerLife.transform.position = _playerSpawnPoint.position;
+            _playerLife.Heal(_playerLife.MaxLife);
+            _playerLife.transform.position = _playerSpawnPoint.position;
 
-            PlayerMana.Instance.RegenerateAllMana();
+            _playerMana.RegenerateAllMana();
         }
+
+#endregion
     }
 }

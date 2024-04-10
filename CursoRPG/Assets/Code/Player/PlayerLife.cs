@@ -7,8 +7,6 @@ namespace Player
 {
     public class PlayerLife : Life
     {
-        public static PlayerLife Instance;
-
         public static event Action OnLifeIncreased;
         public static event Action OnLifeDecreased;
         public static event Action OnPlayerDefeated;

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Managers
 {
-    public class StatsManager : SingletonMonoBehaviour<StatsManager>
+    public class StatsManager : BaseManager
     {
         #region Private Attributes
 
@@ -19,19 +19,17 @@ namespace Managers
         #region Public Attributes
 
         public static event Action OnStatsUpdated;
-        
+
         #endregion
 
         #region MonoBehaviour Methods
 
-        protected override void Awake()
+        public override void ConfigureManager()
         {
-            base.Awake();
-
-            SetUpStats();
             Configure();
+            SetUpStats();
         }
-        
+
         #endregion
 
         #region Methods
