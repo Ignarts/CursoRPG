@@ -22,11 +22,7 @@ namespace Entities
         public float MaxMana => _maxMana;
         public float CurrentMana => _currentMana;
 
-        protected virtual void Awake()
-        {
-            _currentMana = _maxMana;
-            _currentManaregenerationTime = 0f;
-        }
+#region MonoBehaviour Methods
 
         private IEnumerator Start()
         {
@@ -35,6 +31,16 @@ namespace Entities
                 ManaRegeneration();
                 yield return null;
             }
+        }
+
+#endregion
+
+#region Methods
+
+        public virtual void Configure()
+        {
+            _currentMana = _maxMana;
+            _currentManaregenerationTime = 0f;
         }
 
         protected virtual void ManaRegeneration()
@@ -60,5 +66,13 @@ namespace Entities
 
             _currentMana -= manaAmount;
         }
+
+        public void SetUpStats(int maxMana, float manaRegenerationRate)
+        {
+            _maxMana = maxMana;
+            _manaRegenerationRate = manaRegenerationRate;
+        }
+        
+#endregion
     }
 }

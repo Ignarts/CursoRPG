@@ -128,7 +128,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ScrollFuego_0: -3349752209046878439
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

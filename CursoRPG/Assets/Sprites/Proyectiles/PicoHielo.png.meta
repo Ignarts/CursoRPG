@@ -296,7 +296,15 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      PicoHielo_0: 221151040219941854
+      PicoHielo_1: 457560810503069357
+      PicoHielo_2: -8744208595944900952
+      PicoHielo_3: -8427645797711620495
+      PicoHielo_4: -2645849624074750597
+      PicoHielo_5: 3894046094536032498
+      PicoHielo_6: -7730142745732368687
+      PicoHielo_7: 8645879621282312640
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

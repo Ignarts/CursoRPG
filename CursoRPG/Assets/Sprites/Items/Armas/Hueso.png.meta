@@ -128,7 +128,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Hueso_0: 584124563360700509
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

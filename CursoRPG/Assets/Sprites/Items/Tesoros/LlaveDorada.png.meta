@@ -128,7 +128,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      LlaveDorada_0: 5773812629600554277
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

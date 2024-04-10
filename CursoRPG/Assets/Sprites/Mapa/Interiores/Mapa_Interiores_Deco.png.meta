@@ -128,7 +128,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Mapa_Interiores_Deco_0: -243060275515691318
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

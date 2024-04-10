@@ -200,7 +200,11 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      BarraUI_0: 425845598855699027
+      BarraUI_1: 1478739925597350199
+      BarraUI_2: -1964540290777306295
+      BarraUI_3: 3991059510665042976
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

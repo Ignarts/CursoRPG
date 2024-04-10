@@ -128,7 +128,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      LifeBarMiniUnder_0: -3491547502832315832
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

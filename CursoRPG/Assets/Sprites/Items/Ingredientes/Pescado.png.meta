@@ -128,7 +128,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Pescado_0: -1149426005625681879
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

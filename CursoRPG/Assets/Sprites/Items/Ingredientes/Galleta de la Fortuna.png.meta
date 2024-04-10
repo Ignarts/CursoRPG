@@ -128,7 +128,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Galleta de la Fortuna_0: 1269268640068031738
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

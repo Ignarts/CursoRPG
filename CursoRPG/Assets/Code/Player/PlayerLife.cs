@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using Entities;
+using Managers;
 
 namespace Player
 {
@@ -16,18 +17,7 @@ namespace Player
 
         public bool IsPlayerAlive => _isPlayerAlive;
 
-        protected override void Awake()
-        {
-            if(Instance != null)
-            {
-                Destroy(gameObject);
-            }
-            
-            Instance = this;
-
-            base.Awake();
-            _isPlayerAlive = true;
-        }
+#region MonoBehaviour Methods
 
         private void Update()
         {
@@ -43,7 +33,16 @@ namespace Player
                 _isPlayerAlive = true;
             }
         }
+#endregion
 
+#region Methods
+
+        public override void Configure()
+        {
+            base.Configure();
+            _isPlayerAlive = true;
+        }
+        
         public override void Heal(float healAmount)
         {
             base.Heal(healAmount);
@@ -55,5 +54,7 @@ namespace Player
             base.TakeDamage(damage);
             OnLifeDecreased?.Invoke();
         }
+
+#endregion
     }
 }

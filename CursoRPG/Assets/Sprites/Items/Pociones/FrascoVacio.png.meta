@@ -128,7 +128,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      FrascoVacio_0: 2065312048854818652
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

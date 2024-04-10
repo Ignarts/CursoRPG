@@ -200,7 +200,11 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      BolaEnergia_0: 4386929954262546681
+      BolaEnergia_1: 8390785089804363480
+      BolaEnergia_2: -60187384783409536
+      BolaEnergia_3: -3273969487296603160
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

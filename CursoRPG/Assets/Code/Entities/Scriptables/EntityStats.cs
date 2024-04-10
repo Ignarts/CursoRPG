@@ -6,10 +6,11 @@ namespace Entities.Scriptables
     {
         #region Private Attributes
 
-        protected float _maxHealth;
-        protected float _damage;
-        protected float _speed;
-        protected float _attackSpeed;
+        [Header("Entity Stats")]
+        [SerializeField] protected float _maxHealth;
+        [SerializeField] protected float _damage;
+        [SerializeField] protected float _speed;
+        [SerializeField] protected float _attackSpeed;
 
         #endregion
 

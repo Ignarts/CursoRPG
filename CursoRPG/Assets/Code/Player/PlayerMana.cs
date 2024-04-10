@@ -6,24 +6,20 @@ namespace Player
 {
     public class PlayerMana : Mana
     {
-        public static PlayerMana Instance;
+        private PlayerLife _playerLife;
 
         public static event Action OnManaUsed;
 
-        protected override void Awake()
+        public void Configure(PlayerLife playerLife)
         {
-            if(Instance != null)
-            {
-                Destroy(gameObject);
-            }
+            base.Configure();
 
-            Instance = this;
-            base.Awake();
+            _playerLife = playerLife;
         }
 
         protected override void ManaRegeneration()
         {
-            if(!PlayerLife.Instance.IsPlayerAlive) { return; }
+            if(!_playerLife.IsPlayerAlive) { return; }
 
             base.ManaRegeneration();
         }

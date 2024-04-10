@@ -8,13 +8,14 @@ namespace Player.Scriptables
     {
         #region Private Attributes
 
-        protected float _maxMana;
-        protected float _manaRegen;
-        protected float defense;
-        protected float _criticalChance;
-        protected float _criticalBonus;
-        protected float _blockChance;
-        protected float _blockBonus;
+        [Header("Player Stats")]
+        [SerializeField] protected float _maxMana;
+        [SerializeField] protected float _manaRegen;
+        [SerializeField] protected float defense;
+        [SerializeField] protected float _criticalChance;
+        [SerializeField] protected float _criticalBonus;
+        [SerializeField] protected float _blockChance;
+        [SerializeField] protected float _blockBonus;
 
         #endregion
 

@@ -14,7 +14,7 @@ namespace Entities
         public float MaxLife => _maxLife;
         public float CurrentLife => _currentLife;
 
-        protected virtual void Awake()
+        public virtual void Configure()
         {
             _currentLife = _maxLife;
         }
@@ -45,5 +45,10 @@ namespace Entities
         }
 
         public virtual void Defeated() { }
+
+        public void SetUpStats(float maxHealth)
+        {
+            _maxLife = maxHealth;
+        }
     }
 }

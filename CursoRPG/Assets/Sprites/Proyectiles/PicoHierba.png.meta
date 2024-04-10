@@ -200,7 +200,11 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      PicoHierba_0: -1837342885450397278
+      PicoHierba_1: -1702046232656342941
+      PicoHierba_2: 7717561067865964727
+      PicoHierba_3: 3384664444173561784
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

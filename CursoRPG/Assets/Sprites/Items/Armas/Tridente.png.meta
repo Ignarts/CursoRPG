@@ -128,7 +128,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Tridente_0: -3621735169915983642
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

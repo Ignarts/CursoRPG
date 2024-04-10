@@ -128,7 +128,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Camaron_0: 4122149143120812379
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

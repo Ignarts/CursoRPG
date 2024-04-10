@@ -1,9 +1,10 @@
+using Managers;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Player
 {
-    public class CharacterMovement : MonoBehaviour
+    public class CharacterMovement : SingletonMonoBehaviour<CharacterMovement>
     {
         [SerializeField]
         private Rigidbody2D _rb;
@@ -21,8 +22,11 @@ namespace Player
         private Vector2 _moveInput;
         private Keyboard _keyboard;
 
-        private void Awake()
+#region MonoBehaviour Methods
+        protected override void Awake()
         {
+            base.Awake();
+
             _keyboard = Keyboard.current;
             _playerAnimations = new PlayerAnimations(_animator);
         }
@@ -43,7 +47,10 @@ namespace Player
         {
             _rb.MovePosition(_rb.position + _moveInput.normalized * _speed * Time.fixedDeltaTime);
         }
+#endregion
 
+#region Methods
+    
         private Vector2 GetMovementInput()
         {
             float xInputValue = _keyboard.dKey.ReadValue() - _keyboard.aKey.ReadValue();
@@ -51,5 +58,12 @@ namespace Player
 
             return new Vector2(xInputValue, yInputValue);
         }
+
+        public void SetUpStats(float speed)
+        {
+            _speed = speed;
+        }
+
+#endregion
     }
 }
