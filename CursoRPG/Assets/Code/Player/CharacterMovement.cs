@@ -4,28 +4,37 @@ using UnityEngine.InputSystem;
 
 namespace Player
 {
-    public class CharacterMovement : SingletonMonoBehaviour<CharacterMovement>
+    public class CharacterMovement : MonoBehaviour
     {
-        [SerializeField]
-        private Rigidbody2D _rb;
+        public static CharacterMovement Instance;
 
-        [SerializeField]
-        private float _speed = 8.0f;
+        #region Private Attributes
 
-        [SerializeField]
-        private Animator _animator;
+        [SerializeField] private Rigidbody2D _rb;
 
-        [SerializeField]
-        private PlayerLife _playerLife;
+        [SerializeField] private float _speed = 8.0f;
+
+        [SerializeField] private Animator _animator;
+
+        [SerializeField] private PlayerLife _playerLife;
 
         private PlayerAnimations _playerAnimations;
         private Vector2 _moveInput;
         private Keyboard _keyboard;
 
-#region MonoBehaviour Methods
-        protected override void Awake()
+        #endregion
+
+        #region MonoBehaviour Methods
+
+        private void Awake()
         {
-            base.Awake();
+            if(Instance != null)
+            {
+                Destroy(gameObject);
+            }
+
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
 
             _keyboard = Keyboard.current;
             _playerAnimations = new PlayerAnimations(_animator);
@@ -33,12 +42,12 @@ namespace Player
 
         private void Update()
         {
-            if(!_playerLife.IsPlayerAlive) { return; }
+            if (!_playerLife.IsPlayerAlive) { return; }
 
             _moveInput = GetMovementInput();
             _playerAnimations.UpdateActualLayer(_moveInput);
 
-            if(_moveInput == Vector2.zero) { return; }
+            if (_moveInput == Vector2.zero) { return; }
 
             _playerAnimations.PlayMovementAnimation(_moveInput);
         }
@@ -47,10 +56,10 @@ namespace Player
         {
             _rb.MovePosition(_rb.position + _moveInput.normalized * _speed * Time.fixedDeltaTime);
         }
-#endregion
+        #endregion
 
-#region Methods
-    
+        #region Methods
+
         private Vector2 GetMovementInput()
         {
             float xInputValue = _keyboard.dKey.ReadValue() - _keyboard.aKey.ReadValue();
@@ -64,6 +73,6 @@ namespace Player
             _speed = speed;
         }
 
-#endregion
+        #endregion
     }
 }

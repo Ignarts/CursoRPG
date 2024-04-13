@@ -7,6 +7,8 @@ namespace Managers
 {
     public class StatsManager : BaseManager
     {
+        public static StatsManager Instance;
+
         #region Private Attributes
 
         [SerializeField] private PlayerStats _playerStats;
@@ -14,6 +16,12 @@ namespace Managers
         [SerializeField] private PlayerLife _playerLife;
         [SerializeField] private PlayerMana _playerMana;
         
+        #endregion
+
+        #region Properties
+
+        public PlayerStats PlayerStats => _playerStats;
+
         #endregion
 
         #region Public Attributes
@@ -24,17 +32,32 @@ namespace Managers
 
         #region MonoBehaviour Methods
 
-        public override void ConfigureManager()
+        private void Awake()
         {
-            Configure();
-            SetUpStats();
+            if(Instance != null)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            Instance = this;
+        }
+
+        private void Start() 
+        {            
+            OnStatsUpdated?.Invoke();
         }
 
         #endregion
 
         #region Methods
 
-        private void SetUpStats()
+        public override void ConfigureManager()
+        {
+            Configure();
+        }
+        
+        public void SetUpStats()
         {
             _playerLife.SetUpStats(_playerStats.MaxHealth);
             _playerMana.SetUpStats((int)_playerStats.MaxMana, _playerStats.ManaRegen);

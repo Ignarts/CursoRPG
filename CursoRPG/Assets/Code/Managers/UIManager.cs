@@ -12,12 +12,14 @@ namespace Managers
         [SerializeField] private PlayerLifeManager _playerLifeManager;
         [SerializeField] private PlayerManaManager _playerManaManager;
         [SerializeField] private PlayerExperienceManager _playerExperienceManager;
+        [SerializeField] private PlayerStatsPanel _playerStatsPanel;
 
         [Space(5)]
         [Header("References")]
         [SerializeField] private PlayerLife _playerLife;
         [SerializeField] private PlayerMana _playerMana;
         [SerializeField] private PlayerExperience _playerExperience;
+        [SerializeField] private StatsManager _playerStats;
 
         #endregion
 
@@ -30,6 +32,7 @@ namespace Managers
             _playerLifeManager.Configure(_playerLife);
             _playerManaManager.Configure(_playerMana);
             _playerExperienceManager.Configure(_playerExperience);
+            _playerStatsPanel.Configure(_playerStats.PlayerStats);
         }
 
         #endregion

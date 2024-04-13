@@ -45,7 +45,8 @@ namespace Player
             _currentTemporalExp = 0;
         }
 
-        private void Update() {
+        private void Update()
+        {
             if(Keyboard.current.pKey.wasPressedThisFrame)
             {
                 AddExperience(1);

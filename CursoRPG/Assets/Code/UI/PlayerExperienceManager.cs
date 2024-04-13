@@ -67,9 +67,10 @@ namespace UI
 
         private string GetExperienceText()
         {
+            float levelText = _playerExperience.Level;
             float expPercentage = _playerExperience.CurrentTemporalExp / _playerExperience.NextLevelExp;
 
-            return $"{(expPercentage * 100):F0}%";
+            return $"Lvl {levelText}: {(expPercentage * 100):F0}%";
         }
         
 #endregion
