@@ -9,7 +9,6 @@ namespace Managers
         #region Private Attributes
 
         [SerializeField] private UIManager _uiManager;
-        [SerializeField] private StatsManager _statsManager;
 
         #endregion
 
@@ -33,8 +32,6 @@ namespace Managers
 
         private void ConfigureManagers()
         {
-            _statsManager.SetUpStats();
-            _statsManager.ConfigureManager();
             _uiManager.ConfigureManager();
         }
         

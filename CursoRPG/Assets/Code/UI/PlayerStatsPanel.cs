@@ -26,6 +26,12 @@ namespace UI
         [SerializeField] private StatPanelValue _criticalChanceStat;
         [SerializeField] private StatPanelValue _blockChanceStat;
 
+        [Header("Attributes Values")]
+        [SerializeField] private TextMeshProUGUI _availablePointsText;
+        [SerializeField] private StatPanelValue _strengthStat;
+        [SerializeField] private StatPanelValue _intelligenceStat;
+        [SerializeField] private StatPanelValue _dexterityStat;
+
         private PlayerStats _playerStats;
         private Keyboard keyboard;
 
@@ -54,6 +60,7 @@ namespace UI
         private void OnDisable()
         {
             StatsManager.OnStatsUpdated -= SetStatValueTexts;
+            StatsManager.OnStatsUpdated -= SetAttributesTexts;
         }
 
         #endregion
@@ -64,10 +71,13 @@ namespace UI
         {
             _playerStats = playerStats;
             StatsManager.OnStatsUpdated += SetStatValueTexts;
+            StatsManager.OnStatsUpdated += SetAttributesTexts;
         }
 
         private IEnumerator ActivatePanel()
         {
+            StatsManager.Instance.SetUpStats();
+
             StopCoroutine(DeactivatePanel());
 
             while (Vector3.Distance(_transform.position, _activePosition.position) > 0.01f)
@@ -75,7 +85,6 @@ namespace UI
                 _transform.position = Vector3.Lerp(_transform.position, _activePosition.position, _speed * Time.deltaTime);
                 yield return null;
             }
-            StatsManager.Instance.SetUpStats();
         }
 
         private IEnumerator DeactivatePanel()
@@ -104,6 +113,17 @@ namespace UI
             _criticalChanceStat.Value.text = _playerStats.CriticalChance.ToString();
             _blockChanceStat.Name.text = "Block";
             _blockChanceStat.Value.text = _playerStats.BlockChance.ToString();
+        }
+
+        private void SetAttributesTexts()
+        {
+            _availablePointsText.text = _playerStats.AvailablePoints.ToString();
+            _strengthStat.Name.text = "Strength";
+            _strengthStat.Value.text = _playerStats.Strength.ToString();
+            _intelligenceStat.Name.text = "Intelligence";
+            _intelligenceStat.Value.text = _playerStats.Intelligence.ToString();
+            _dexterityStat.Name.text = "Dexterity";
+            _dexterityStat.Value.text = _playerStats.Dexterity.ToString();
         }
 
         #endregion

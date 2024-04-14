@@ -1,6 +1,7 @@
 ﻿using System;
 using Player;
 using Player.Scriptables;
+using UI.Buttons;
 using UnityEngine;
 
 namespace Managers
@@ -41,6 +42,12 @@ namespace Managers
             }
 
             Instance = this;
+
+            _playerStats.ResetStats();
+            SetUpStats();
+            ConfigureManager();
+
+            AttributeButton.OnAttributeButtonClicked += AddAttributePoint;
         }
 
         private void Start() 
@@ -60,7 +67,7 @@ namespace Managers
         public void SetUpStats()
         {
             _playerLife.SetUpStats(_playerStats.MaxHealth);
-            _playerMana.SetUpStats((int)_playerStats.MaxMana, _playerStats.ManaRegen);
+            _playerMana.SetUpStats((int)_playerStats.MaxMana, _playerStats.ManaRegeneration);
             _characterMovement.SetUpStats(_playerStats.Speed);
 
             OnStatsUpdated?.Invoke();
@@ -70,6 +77,13 @@ namespace Managers
         {
             _playerLife.Configure();
             _playerMana.Configure(_playerLife);
+        }
+
+        private void AddAttributePoint(AttributeType attributeType)
+        {
+            _playerStats.AddAttributePoint(attributeType);
+
+            OnStatsUpdated?.Invoke();
         }
         
         #endregion
