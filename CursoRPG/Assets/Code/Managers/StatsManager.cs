@@ -48,11 +48,18 @@ namespace Managers
             ConfigureManager();
 
             AttributeButton.OnAttributeButtonClicked += AddAttributePoint;
+            PlayerExperience.OnExpGained += AddAvailablePoints;
         }
 
         private void Start() 
         {            
             OnStatsUpdated?.Invoke();
+        }
+
+        private void OnDisable()
+        {
+            AttributeButton.OnAttributeButtonClicked -= AddAttributePoint;
+            PlayerExperience.OnExpGained -= AddAvailablePoints;
         }
 
         #endregion
@@ -82,6 +89,13 @@ namespace Managers
         private void AddAttributePoint(AttributeType attributeType)
         {
             _playerStats.AddAttributePoint(attributeType);
+
+            OnStatsUpdated?.Invoke();
+        }
+
+        private void AddAvailablePoints()
+        {
+            _playerStats.AddAvailablePoints();
 
             OnStatsUpdated?.Invoke();
         }

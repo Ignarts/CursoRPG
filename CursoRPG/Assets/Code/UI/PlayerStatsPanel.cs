@@ -33,7 +33,8 @@ namespace UI
         [SerializeField] private StatPanelValue _dexterityStat;
 
         private PlayerStats _playerStats;
-        private Keyboard keyboard;
+        private Keyboard _keyboard;
+        private Transform _panelPosition;
 
         #endregion
 
@@ -41,20 +42,22 @@ namespace UI
 
         private void Awake()
         {
-            keyboard = Keyboard.current;
-            StartCoroutine(DeactivatePanel());
+            _keyboard = Keyboard.current;
+            _panelPosition = _restPosition;
         }
 
         private void Update()
         {
-            if(keyboard.tabKey.wasPressedThisFrame)
+            if(_keyboard.tabKey.wasPressedThisFrame)
             {
-                StartCoroutine(ActivatePanel());
+                _panelPosition = _activePosition;
             }
-            else if(keyboard.tabKey.wasReleasedThisFrame)
+            else if(_keyboard.tabKey.wasReleasedThisFrame)
             {
-                StartCoroutine(DeactivatePanel());
+                _panelPosition = _restPosition;
             }
+
+            _transform.position = Vector3.Lerp(_transform.position, _panelPosition.position, _speed * Time.deltaTime);
         }
 
         private void OnDisable()
@@ -74,45 +77,20 @@ namespace UI
             StatsManager.OnStatsUpdated += SetAttributesTexts;
         }
 
-        private IEnumerator ActivatePanel()
-        {
-            StatsManager.Instance.SetUpStats();
-
-            StopCoroutine(DeactivatePanel());
-
-            while (Vector3.Distance(_transform.position, _activePosition.position) > 0.01f)
-            {
-                _transform.position = Vector3.Lerp(_transform.position, _activePosition.position, _speed * Time.deltaTime);
-                yield return null;
-            }
-        }
-
-        private IEnumerator DeactivatePanel()
-        {
-            StopCoroutine(ActivatePanel());
-
-            while (Vector3.Distance(_transform.position, _restPosition.position) > 0.01f)
-            {
-                _transform.position = Vector3.Lerp(_transform.position, _restPosition.position, _speed * Time.deltaTime);
-                yield return null;
-            }
-        }
-
-
         private void SetStatValueTexts()
         {
             _damageStat.Name.text = "Damage";
-            _damageStat.Value.text = _playerStats.Damage.ToString();
+            _damageStat.Value.text = _playerStats.Damage.ToString("F1");
             _defenseStat.Name.text = "Defense";
-            _defenseStat.Value.text = _playerStats.Defense.ToString();
+            _defenseStat.Value.text = _playerStats.Defense.ToString("F1");
             _speedStat.Name.text = "Speed";
-            _speedStat.Value.text = _playerStats.Speed.ToString();
-            _attackSpeedStat.Name.text = "Att. Speed";
-            _attackSpeedStat.Value.text = _playerStats.AttackSpeed.ToString();
+            _speedStat.Value.text = _playerStats.Speed.ToString("F1");
+            _attackSpeedStat.Name.text = "Att.Speed";
+            _attackSpeedStat.Value.text = _playerStats.AttackSpeed.ToString("F1");
             _criticalChanceStat.Name.text = "Crit.d";
-            _criticalChanceStat.Value.text = _playerStats.CriticalChance.ToString();
+            _criticalChanceStat.Value.text = _playerStats.CriticalChance.ToString("F1");
             _blockChanceStat.Name.text = "Block";
-            _blockChanceStat.Value.text = _playerStats.BlockChance.ToString();
+            _blockChanceStat.Value.text = _playerStats.BlockChance.ToString("F1");
         }
 
         private void SetAttributesTexts()

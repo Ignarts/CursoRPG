@@ -1,5 +1,6 @@
 using System;
 using Entities.Scriptables;
+using Managers;
 using UnityEngine;
 
 namespace Player.Scriptables
@@ -66,8 +67,45 @@ namespace Player.Scriptables
             _intelligence = 0;
             _dexterity = 0;
             _availablePoints = 5;
+
+            StatsManager.Instance.SetUpStats();
         }
 
+        /// <summary>
+        /// Method to add strength bonus stats to the player.
+        /// </summary>
+        public void AddStrengthBonusStats()
+        {
+            _damage += 2.0f;
+            _defense += 1.0f;
+            _blockChance += 0.1f;
+            _criticalChance += 0.1f;
+        }
+
+        /// <summary>
+        /// Method to add intelligence bonus stats to the player.
+        /// </summary>
+        public void AddIntelligenceBonusStats()
+        {
+            _maxMana += 10.0f;
+            _manaRegeneration += 0.5f;
+        }
+
+        /// <summary>
+        /// Method to add dexterity bonus stats to the player.
+        /// </summary>
+        public void AddDexterityBonusStats()
+        {
+            _speed += 1.0f;
+            _attackSpeed -= 0.1f;
+            _criticalBonus += 0.1f;
+            _blockBonus += 0.1f;
+        }
+
+        /// <summary>
+        /// Method to add an attribute point to the player.
+        /// </summary>
+        /// <param name="attributeType"></param>
         public void AddAttributePoint(AttributeType attributeType)
         {
             if(_availablePoints <= 0)
@@ -77,16 +115,26 @@ namespace Player.Scriptables
             {
                 case AttributeType.Strength:
                     _strength++;
+                    AddStrengthBonusStats();
                     break;
                 case AttributeType.Intelligence:
                     _intelligence++;
+                    AddIntelligenceBonusStats();
                     break;
                 case AttributeType.Dexterity:
                     _dexterity++;
+                    AddDexterityBonusStats();
                     break;
             }
 
             _availablePoints--;
+            
+            StatsManager.Instance.SetUpStats();
+        }
+
+        internal void AddAvailablePoints()
+        {
+            _availablePoints += 3;
         }
 
         #endregion
