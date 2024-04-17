@@ -1283,7 +1283,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TilesetElement_48
+      name: Carriage
       rect:
         serializedVersion: 2
         x: 32
@@ -1451,7 +1451,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TilesetElement_63
+      name: BoxComposite
       rect:
         serializedVersion: 2
         x: 64
@@ -3183,6 +3183,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      BoxComposite: 227495219735660692
+      Carriage: -2177270939211594692
       TilesetElement_0: 299833852155544497
       TilesetElement_1: -4557167034005113821
       TilesetElement_10: -7393123667822017851
@@ -3270,7 +3272,6 @@ TextureImporter:
       TilesetElement_45: 4595064620167516200
       TilesetElement_46: 3026858082196701982
       TilesetElement_47: 6459757952700475889
-      TilesetElement_48: -2177270939211594692
       TilesetElement_49: 5831243803102154227
       TilesetElement_5: -5291069566441355259
       TilesetElement_50: 5507947115147916408
@@ -3287,7 +3288,6 @@ TextureImporter:
       TilesetElement_60: 6227861222032625486
       TilesetElement_61: 8254304348286904057
       TilesetElement_62: -4408982171841485821
-      TilesetElement_63: 227495219735660692
       TilesetElement_64: 8109961134374588885
       TilesetElement_65: 2453495317675250842
       TilesetElement_66: 8569968915611447383

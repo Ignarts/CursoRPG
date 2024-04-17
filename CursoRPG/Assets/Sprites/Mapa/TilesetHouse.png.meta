@@ -188,12 +188,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TilesetHouse_2
+      name: Dojo
       rect:
         serializedVersion: 2
-        x: 0
+        x: 64
         y: 289
-        width: 126
+        width: 32
         height: 15
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -649,6 +649,153 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: TilesetHouse_0
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 16
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4d022b1cce6dfe4aa1ae97d57dd230a
+      internalID: 2072599772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jar_002
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 32
+        width: 16
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ed8934041ea569459fc872dfad41b64
+      internalID: -1427823724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jar_003
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 32
+        width: 16
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 519dac4cd16228a439e2f25b936b8a7a
+      internalID: 1786217978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FruitBox
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 128
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff92b2b2bd1da694db34f3f459e9fd2a
+      internalID: 915108516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoodFox
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 128
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8abb904a135bd34995fe9da46fabfd3
+      internalID: -1053176056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EmptyBox
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 112
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e539447333ad1864e9f6aee1ca2eba1e
+      internalID: -797504369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenBox
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 112
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: feced3e88e562f5489e920c49461d9ce
+      internalID: 1172721698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -660,6 +807,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      Dojo: 2818596462216581815
+      EmptyBox: -797504369
+      FoodFox: -1053176056
+      FruitBox: 915108516
       House_001: -3278226434802068603
       House_002: -4860273865661983898
       House_003: -3369710678066932219
@@ -668,11 +819,13 @@ TextureImporter:
       House_Sushi_005: -2570171234850243767
       House_Temple_004: -2120070085413680913
       House_Wood_008: -1780060344
+      Jar_002: -1427823724
+      Jar_003: 1786217978
+      TilesetHouse_0: 2072599772
       TilesetHouse_10: 5867180157180488104
       TilesetHouse_11: -2344913512963965630
       TilesetHouse_12: 6321883920903835643
       TilesetHouse_19: -1138784997
-      TilesetHouse_2: 2818596462216581815
       TilesetHouse_20: 1839696877
       TilesetHouse_21: -1530746868
       TilesetHouse_22: 340239226
@@ -684,6 +837,7 @@ TextureImporter:
       TilesetHouse_7: 2621549743263025007
       TilesetHouse_8: 571124544331840101
       TilesetHouse_9: 6105578407987655798
+      WoodenBox: 1172721698
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
