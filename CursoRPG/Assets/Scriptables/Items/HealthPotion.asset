@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3637175381d6133479cda2745b924817, type: 3}
+  m_Name: HealthPotion
+  m_EditorClassIdentifier: 
+  id: HealthPotion
+  _itemName: Health Potion
+  _itemType: 1
+  _icon: {fileID: 6991690097665705131, guid: a0a6784960dac974a95e55914c19cd0f, type: 3}
+  _description: This is the simplest life potion. Heals 10 HP
+  _isConsumable: 1
+  _isStackable: 1
+  _maxStackableAmount: 50
+  _healthAmount: 10
