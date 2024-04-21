@@ -33,7 +33,6 @@ namespace UI
         [SerializeField] private StatPanelValue _dexterityStat;
 
         private PlayerStats _playerStats;
-        private Keyboard _keyboard;
         private Transform _panelPosition;
 
         #endregion
@@ -42,22 +41,8 @@ namespace UI
 
         private void Awake()
         {
-            _keyboard = Keyboard.current;
             _panelPosition = _restPosition;
-        }
-
-        private void Update()
-        {
-            if(_keyboard.tabKey.wasPressedThisFrame)
-            {
-                _panelPosition = _activePosition;
-            }
-            else if(_keyboard.tabKey.wasReleasedThisFrame)
-            {
-                _panelPosition = _restPosition;
-            }
-
-            _transform.position = Vector3.Lerp(_transform.position, _panelPosition.position, _speed * Time.deltaTime);
+            StartCoroutine(MovePanel());
         }
 
         private void OnDisable()
@@ -75,6 +60,21 @@ namespace UI
             _playerStats = playerStats;
             StatsManager.OnStatsUpdated += SetStatValueTexts;
             StatsManager.OnStatsUpdated += SetAttributesTexts;
+        }
+
+        public void ToggleStatsPanel()
+        {
+            _panelPosition = _panelPosition == _restPosition ? _activePosition : _restPosition;
+            StartCoroutine(MovePanel());
+        }
+
+        private IEnumerator MovePanel()
+        {
+            while (Vector3.Distance(_transform.position, _panelPosition.position) > 0.1f)
+            {
+                _transform.position = Vector3.Lerp(_transform.position, _panelPosition.position, _speed * Time.deltaTime);
+                yield return null;
+            }
         }
 
         private void SetStatValueTexts()

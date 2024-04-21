@@ -14,6 +14,8 @@ namespace Managers
         [SerializeField] private PlayerExperienceManager _playerExperienceManager;
         [SerializeField] private PlayerStatsPanel _playerStatsPanel;
 
+        [SerializeField] private Inventory _inventory;
+
         [Space(5)]
         [Header("References")]
         [SerializeField] private PlayerLife _playerLife;
@@ -33,6 +35,7 @@ namespace Managers
             _playerManaManager.Configure(_playerMana);
             _playerExperienceManager.Configure(_playerExperience);
             _playerStatsPanel.Configure(_playerStats.PlayerStats);
+            _inventory.Configure();
         }
 
         #endregion
