@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Items;
 using UI.Buttons;
 using UnityEngine;
 
@@ -33,6 +34,23 @@ namespace UI
                 newSlot.Configure(i);
                 _availableSlots.Add(newSlot);
             }
+        }
+
+        public void ShowItemOnInventory(InventoryItems item, int amount, int index)
+        {
+            if (index < 0 || index >= _availableSlots.Count || amount <= 0)
+                return;
+
+            InventorySlots slots = _availableSlots[index];
+
+            if(item == null)
+            {
+                slots.TogglePanelValues(false);
+                return;
+            }
+
+            slots.SetSlotValues(item, amount);
+            slots.TogglePanelValues(true);
         }
         #endregion
     }

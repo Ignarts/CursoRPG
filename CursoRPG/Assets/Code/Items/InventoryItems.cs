@@ -45,6 +45,29 @@ namespace Items
         public int CurrentStackableAmount => _currentStackableAmount;
         
         #endregion
+
+        #region Methods
+
+        public InventoryItems InventoryItemInstance()
+        {
+            InventoryItems newInstance = Instantiate(this);
+            return newInstance;
+        }
+
+        public void AddStackableAmount(int amount)
+        {
+            _currentStackableAmount += amount;
+        }
+
+        public void SetAmount(int amount)
+        {
+            _currentStackableAmount = amount;
+
+            if(_currentStackableAmount > _maxStackableAmount)
+                _currentStackableAmount = _maxStackableAmount;
+        }
+
+        #endregion
     }
 
     
