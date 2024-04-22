@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using Items;
+using Player;
+using UI.Buttons;
 using UnityEngine;
 
 namespace UI
@@ -10,6 +12,9 @@ namespace UI
         public static Inventory Instance;
 
         #region Private Attribtues
+
+        [Header("Player")]
+        [SerializeField] private CharacterMovement _player;
 
         [Header("Inventory Attributes")]
         [SerializeField] private UIInventory _uiInventory;
@@ -24,6 +29,9 @@ namespace UI
         #region Properties
 
         public InventoryItems[] InventoryItems => _inventoryItems;
+        public CharacterMovement PlayerMovement => _player;
+        public PlayerLife PlayerLife => _player.GetComponent<PlayerLife>();
+        public PlayerMana PlayerMana => _player.GetComponent<PlayerMana>();
         
         #endregion
 
@@ -38,6 +46,16 @@ namespace UI
 
             Instance = this;
             DontDestroyOnLoad(gameObject);
+        }
+
+        private void OnEnable()
+        {
+            InventorySlots.OnSlotInteraction += SlotInteraction;
+        }
+
+        private void OnDisable()
+        {
+            InventorySlots.OnSlotInteraction -= SlotInteraction;
         }
         
         #endregion
@@ -161,6 +179,48 @@ namespace UI
             }
             
             return indexes;
+        }
+
+        private void UseItem(int index)
+        {
+            if(index < 0 || index >= _inventoryItems.Length || _inventoryItems[index] == null)
+                return;
+
+            if(_inventoryItems[index].UseItem())
+            {
+                _inventoryItems[index].RemoveStackableAmount(1);
+
+                if(_inventoryItems[index].CurrentStackableAmount <= 0)
+                {
+                    _inventoryItems[index] = null;
+                    _uiInventory.ShowItemOnInventory(null, 0, index);
+                }
+                else
+                {
+                    _uiInventory.ShowItemOnInventory(_inventoryItems[index], _inventoryItems[index].CurrentStackableAmount, index);
+                }
+            }
+        }
+        
+        #endregion
+
+        #region Events
+
+        private void SlotInteraction(InteractionType type, int index)
+        {
+            if(type == InteractionType.Click)
+                return;
+            
+            switch(type)
+            {
+                case InteractionType.Use:
+                    UseItem(index);
+                    break;
+                case InteractionType.Remove:
+                    break;
+                case InteractionType.Equip:
+                    break;
+            }
         }
         
         #endregion

@@ -74,22 +74,29 @@ namespace UI.Buttons
             _amountText.text = string.Empty;
         }
 
-        public void OnClick()
+        #endregion
+
+        #region Events
+        
+        public void OnClickItem()
         {
             OnSlotInteraction?.Invoke(InteractionType.Click, _slotIndex);
         }
 
-        public void OnUse()
+        public void OnUseItem()
         {
+            if(Inventory.Instance.InventoryItems[_slotIndex] == null)
+                return;
+            
             OnSlotInteraction?.Invoke(InteractionType.Use, _slotIndex);
         }
 
-        public void OnEquip()
+        public void OnEquipItem()
         {
             OnSlotInteraction?.Invoke(InteractionType.Equip, _slotIndex);
         }
 
-        public void OnRemove()
+        public void OnRemoveItem()
         {
             OnSlotInteraction?.Invoke(InteractionType.Remove, _slotIndex);
         }

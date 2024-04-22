@@ -4,6 +4,7 @@ using NUnit.Framework;
 using TMPro;
 using UI.Buttons;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace UI
@@ -24,6 +25,12 @@ namespace UI
 
         private int _slotsNumber;
         private List<InventorySlots> _availableSlots = new List<InventorySlots>();
+
+        #endregion
+
+        #region Properties
+        
+        public InventorySlots SelectedSlot { get; private set; }
 
         #endregion
 
@@ -98,11 +105,33 @@ namespace UI
         /// <param name="index"></param>
         private void SlotInteraction(InteractionType type, int index)
         {
-            if(type == InteractionType.Click)
+            if(type != InteractionType.Click)
             {
-                SetItemDescription(index);
+                return;
             }
+
+            SetItemDescription(index);
+            GetSelectedSlot();
         }
+
+        private void GetSelectedSlot()
+        {
+            GameObject selectedGO = EventSystem.current.currentSelectedGameObject;
+
+            if (selectedGO == null)
+                return;
+            
+            InventorySlots slot = selectedGO.GetComponent<InventorySlots>();
+
+            if(slot == null)
+                return;
+
+            SelectedSlot = slot;
+        }
+
+        #endregion
+
+        #region Events
 
         /// <summary>
         /// Set the selected index item description
@@ -121,9 +150,16 @@ namespace UI
             _itemName.text = item.ItemName;
             _itemDescription.text = item.Description;
             _itemDescriptionPanel.SetActive(true);
-
         }
-        
+
+        public void UseItem()
+        {
+            if(SelectedSlot == null)
+                return;
+
+            SelectedSlot.OnUseItem();
+        }
+
         #endregion
     }
 }

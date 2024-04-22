@@ -5299,6 +5299,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5909300517588146512, guid: 3c61db8184137f14a98535f3b708f5da, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909300517588146512, guid: 3c61db8184137f14a98535f3b708f5da, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909300517588146512, guid: 3c61db8184137f14a98535f3b708f5da, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1755330627}
+    - target: {fileID: 5909300517588146512, guid: 3c61db8184137f14a98535f3b708f5da, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909300517588146512, guid: 3c61db8184137f14a98535f3b708f5da, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UseItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909300517588146512, guid: 3c61db8184137f14a98535f3b708f5da, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UI.UIInventory, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909300517588146512, guid: 3c61db8184137f14a98535f3b708f5da, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7795148942138617339, guid: 3c61db8184137f14a98535f3b708f5da, type: 3}
       propertyPath: m_Name
       value: Remove_UIButton_Text
@@ -14939,6 +14967,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44218b7b069080a47a30c899d150fb64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 1296822305}
   _uiInventory: {fileID: 1755330627}
   _inventoryItems: []
 --- !u!4 &1755330629
@@ -28570,6 +28599,34 @@ PrefabInstance:
     - target: {fileID: 2985160489347284853, guid: 3c61db8184137f14a98535f3b708f5da, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909300517588146512, guid: 3c61db8184137f14a98535f3b708f5da, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909300517588146512, guid: 3c61db8184137f14a98535f3b708f5da, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909300517588146512, guid: 3c61db8184137f14a98535f3b708f5da, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1755330627}
+    - target: {fileID: 5909300517588146512, guid: 3c61db8184137f14a98535f3b708f5da, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909300517588146512, guid: 3c61db8184137f14a98535f3b708f5da, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UseItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909300517588146512, guid: 3c61db8184137f14a98535f3b708f5da, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UI.UIInventory, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909300517588146512, guid: 3c61db8184137f14a98535f3b708f5da, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7795148942138617339, guid: 3c61db8184137f14a98535f3b708f5da, type: 3}
       propertyPath: m_Name

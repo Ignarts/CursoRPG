@@ -17,16 +17,16 @@ namespace Items
         #region Private Attributes
         
         [Header("Item Attributes")]
-        [SerializeField] private string id;
-        [SerializeField] private string _itemName;
-        [SerializeField] private ItemType _itemType;
-        [SerializeField] private Sprite _icon;
+        [SerializeField] protected string id;
+        [SerializeField] protected string _itemName;
+        [SerializeField] protected ItemType _itemType;
+        [SerializeField] protected Sprite _icon;
         [TextArea] [SerializeField] public string _description;
 
         [Header("Item Properties")]
-        [SerializeField] private bool _isConsumable;
-        [SerializeField] private  bool _isStackable;
-        [SerializeField] private int _maxStackableAmount = 1;
+        [SerializeField] protected bool _isConsumable;
+        [SerializeField] protected  bool _isStackable;
+        [SerializeField] protected int _maxStackableAmount = 1;
 
         private int _currentStackableAmount = 1;
 
@@ -59,12 +59,38 @@ namespace Items
             _currentStackableAmount += amount;
         }
 
+        public void RemoveStackableAmount(int amount)
+        {
+            if(_currentStackableAmount == 0)
+                return;
+                
+            _currentStackableAmount -= amount;
+
+            if(_currentStackableAmount < 0)
+                _currentStackableAmount = 0;
+        }
+
         public void SetAmount(int amount)
         {
             _currentStackableAmount = amount;
 
             if(_currentStackableAmount > _maxStackableAmount)
                 _currentStackableAmount = _maxStackableAmount;
+        }
+
+        public virtual bool UseItem()
+        {
+            return true;
+        }
+
+        public virtual bool EquipItem()
+        {
+            return true;
+        }
+
+        public virtual bool RemoveItem()
+        {
+            return true;
         }
 
         #endregion
