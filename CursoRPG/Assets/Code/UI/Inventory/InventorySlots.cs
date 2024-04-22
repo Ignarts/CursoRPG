@@ -97,6 +97,15 @@ namespace UI.Buttons
         public void OnClickItem()
         {
             OnSlotInteraction?.Invoke(InteractionType.Click, _slotIndex);
+
+            // move item
+            if(Inventory.Instance.UIInventory.InitialIndexSlotToMove == -1)
+                return;
+            
+            if(Inventory.Instance.UIInventory.InitialIndexSlotToMove == _slotIndex)
+                return;
+
+            Inventory.Instance.MoveItem(Inventory.Instance.UIInventory.InitialIndexSlotToMove, _slotIndex);
         }
 
         /// <summary>

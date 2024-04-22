@@ -5,6 +5,7 @@ using TMPro;
 using UI.Buttons;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace UI
@@ -31,6 +32,7 @@ namespace UI
         #region Properties
         
         public InventorySlots SelectedSlot { get; private set; }
+        public int InitialIndexSlotToMove { get; private set; }
 
         #endregion
 
@@ -39,6 +41,14 @@ namespace UI
         private void Update()
         {
             GetSelectedSlot();
+
+            if(!Keyboard.current.mKey.wasPressedThisFrame)
+                return;
+
+            if(SelectedSlot == null)
+                    return;
+
+            InitialIndexSlotToMove = SelectedSlot.SlotIndex;
         }
 
         private void OnEnable()
@@ -64,6 +74,7 @@ namespace UI
         {
             _slotsNumber = slotsNumber;
             CreateSlots();
+            InitialIndexSlotToMove = -1;
         }
         
         /// <summary>

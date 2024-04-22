@@ -28,6 +28,7 @@ namespace UI
 
         #region Properties
 
+        public UIInventory UIInventory => _uiInventory;
         public InventoryItems[] InventoryItems => _inventoryItems;
         public CharacterMovement PlayerMovement => _player;
         public PlayerLife PlayerLife => _player.GetComponent<PlayerLife>();
@@ -200,6 +201,27 @@ namespace UI
                     _uiInventory.ShowItemOnInventory(_inventoryItems[index], _inventoryItems[index].CurrentStackableAmount, index);
                 }
             }
+        }
+
+        public void MoveItem(int initialSlotIndex, int targetSlotIndex)
+        {
+            if(_inventoryItems[initialSlotIndex] == null || _inventoryItems[targetSlotIndex] != null)
+                return;
+
+            // copy actual item to move
+            InventoryItems itemToMove = _inventoryItems[initialSlotIndex];
+
+            // copy item to target slot
+            _inventoryItems[targetSlotIndex] = itemToMove;
+
+            // show item on target slot
+            _uiInventory.ShowItemOnInventory(itemToMove, itemToMove.CurrentStackableAmount, targetSlotIndex);
+            
+            // remove item from actual slot
+            _inventoryItems[initialSlotIndex] = null;
+
+            // show null item on initial slot
+            _uiInventory.ShowItemOnInventory(null, 0, initialSlotIndex);
         }
         
         #endregion
