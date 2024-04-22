@@ -36,6 +36,11 @@ namespace UI
 
         #region MonoBehaviour Methods
 
+        private void Update()
+        {
+            GetSelectedSlot();
+        }
+
         private void OnEnable()
         {
             InventorySlots.OnSlotInteraction += SlotInteraction;
@@ -83,12 +88,12 @@ namespace UI
         /// <param name="index"></param>
         public void ShowItemOnInventory(InventoryItems item, int amount, int index)
         {
-            if (index < 0 || index >= _availableSlots.Count || amount <= 0)
+            if (index < 0 || index >= _availableSlots.Count)
                 return;
 
             InventorySlots slots = _availableSlots[index];
 
-            if(item == null)
+            if(item == null || amount <= 0)
             {
                 slots.TogglePanelValues(false);
                 return;
@@ -111,9 +116,11 @@ namespace UI
             }
 
             SetItemDescription(index);
-            GetSelectedSlot();
         }
 
+        /// <summary>
+        /// Get the selected slot
+        /// </summary>
         private void GetSelectedSlot()
         {
             GameObject selectedGO = EventSystem.current.currentSelectedGameObject;
@@ -152,12 +159,16 @@ namespace UI
             _itemDescriptionPanel.SetActive(true);
         }
 
+        /// <summary>
+        /// Use the selected item
+        /// </summary>
         public void UseItem()
         {
             if(SelectedSlot == null)
                 return;
 
             SelectedSlot.OnUseItem();
+            SelectedSlot.SelectButton();
         }
 
         #endregion

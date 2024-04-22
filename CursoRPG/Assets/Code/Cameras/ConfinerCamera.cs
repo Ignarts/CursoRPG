@@ -17,18 +17,28 @@ public class ConfinerCamera : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (!other.CompareTag("Player"))
         {
-            _virtualCamera.SetActive(true);
+            return;
         }
+
+        if(_virtualCamera == null)
+            return;
+
+        _virtualCamera.SetActive(true);
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (!other.CompareTag("Player"))
         {
-            _virtualCamera.SetActive(false);
+            return;
         }
+
+        if(_virtualCamera == null)
+            return;
+            
+        _virtualCamera.SetActive(false);
     }
 
     #endregion

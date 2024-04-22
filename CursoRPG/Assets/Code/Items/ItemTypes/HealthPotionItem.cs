@@ -24,6 +24,7 @@ namespace Items
                 return true;
             }
 
+            Debug.Log("Player is already at full health.");
             return false;
         }
 

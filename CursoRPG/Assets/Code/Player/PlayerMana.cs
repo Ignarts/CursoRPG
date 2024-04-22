@@ -32,6 +32,17 @@ namespace Player
             OnManaUsed?.Invoke();
         }
 
+        public void RestoreMana(int manaAmount)
+        {
+            if(!_playerLife.IsPlayerAlive) { return; }
+
+            _currentMana += manaAmount;
+            if(_currentMana > _maxMana)
+            {
+                _currentMana = _maxMana;
+            }
+        }
+
         public void RegenerateAllMana()
         {
             _currentMana = _maxMana;

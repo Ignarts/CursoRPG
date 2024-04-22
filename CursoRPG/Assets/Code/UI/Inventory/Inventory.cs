@@ -207,10 +207,7 @@ namespace UI
         #region Events
 
         private void SlotInteraction(InteractionType type, int index)
-        {
-            if(type == InteractionType.Click)
-                return;
-            
+        {            
             switch(type)
             {
                 case InteractionType.Use:

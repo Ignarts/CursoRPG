@@ -18,6 +18,7 @@ namespace UI.Buttons
     {
         #region Private Attributes
 
+        [SerializeField] private Button _button;
         [SerializeField] private Image _itemImage;
         [SerializeField] private GameObject _amountPanel;
         [SerializeField] private TextMeshProUGUI _amountText;
@@ -47,6 +48,14 @@ namespace UI.Buttons
         }
 
         /// <summary>
+        /// Select the button
+        /// </summary>
+        public void SelectButton()
+        {
+            _button.Select();
+        }
+
+        /// <summary>
         /// Set the values of the slot
         /// </summary>
         /// <param name="item"></param>
@@ -57,6 +66,10 @@ namespace UI.Buttons
             _amountText.text = amount.ToString();
         }
 
+        /// <summary>
+        /// Toggle the panel values with the current state
+        /// </summary>
+        /// <param name="state"></param>
         public void TogglePanelValues(bool state)
         {
             _amountPanel.SetActive(state);
@@ -78,11 +91,17 @@ namespace UI.Buttons
 
         #region Events
         
+        /// <summary>
+        /// Event to control when the item is clicked
+        /// </summary>
         public void OnClickItem()
         {
             OnSlotInteraction?.Invoke(InteractionType.Click, _slotIndex);
         }
 
+        /// <summary>
+        /// Event to control when the item is used
+        /// </summary>
         public void OnUseItem()
         {
             if(Inventory.Instance.InventoryItems[_slotIndex] == null)
@@ -91,11 +110,17 @@ namespace UI.Buttons
             OnSlotInteraction?.Invoke(InteractionType.Use, _slotIndex);
         }
 
+        /// <summary>
+        /// Event to control when the item is equipped
+        /// </summary>
         public void OnEquipItem()
         {
             OnSlotInteraction?.Invoke(InteractionType.Equip, _slotIndex);
         }
 
+        /// <summary>
+        /// Event to control when the item is removed
+        /// </summary>
         public void OnRemoveItem()
         {
             OnSlotInteraction?.Invoke(InteractionType.Remove, _slotIndex);
