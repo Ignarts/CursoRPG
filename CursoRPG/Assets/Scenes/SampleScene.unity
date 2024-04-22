@@ -14923,6 +14923,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _slot: {fileID: -5757114746783126109, guid: 7e3cc8a816077824cb47c5b18f8c2e5e, type: 3}
   _container: {fileID: 311592003}
+  _itemDescriptionPanel: {fileID: 776958956}
+  _itemIcon: {fileID: 1626462040}
+  _itemName: {fileID: 737328422}
+  _itemDescription: {fileID: 151629486}
 --- !u!114 &1755330628
 MonoBehaviour:
   m_ObjectHideFlags: 0

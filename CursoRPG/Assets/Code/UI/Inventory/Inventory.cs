@@ -21,6 +21,12 @@ namespace UI
         
         #endregion
 
+        #region Properties
+
+        public InventoryItems[] InventoryItems => _inventoryItems;
+        
+        #endregion
+
         #region MonoBehaviour Methods
 
         private void Awake()

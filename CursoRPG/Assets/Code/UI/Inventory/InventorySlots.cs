@@ -2,8 +2,18 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Items;
+using System;
+
 namespace UI.Buttons
 {
+    public enum InteractionType
+    {
+        Click,
+        Use,
+        Equip,
+        Remove
+    }
+    
     public class InventorySlots : MonoBehaviour
     {
         #region Private Attributes
@@ -20,6 +30,12 @@ namespace UI.Buttons
 
         public int SlotIndex => _slotIndex;
         
+        #endregion
+
+        #region Events
+
+        public static Action<InteractionType, int> OnSlotInteraction;
+
         #endregion
 
         #region Methods
@@ -56,6 +72,26 @@ namespace UI.Buttons
             _itemImage.gameObject.SetActive(false);
             _amountPanel.SetActive(false);
             _amountText.text = string.Empty;
+        }
+
+        public void OnClick()
+        {
+            OnSlotInteraction?.Invoke(InteractionType.Click, _slotIndex);
+        }
+
+        public void OnUse()
+        {
+            OnSlotInteraction?.Invoke(InteractionType.Use, _slotIndex);
+        }
+
+        public void OnEquip()
+        {
+            OnSlotInteraction?.Invoke(InteractionType.Equip, _slotIndex);
+        }
+
+        public void OnRemove()
+        {
+            OnSlotInteraction?.Invoke(InteractionType.Remove, _slotIndex);
         }
         
         #endregion
