@@ -1,7 +1,7 @@
 # Udemy Course - RPG Game Development in Unity
 
 
-This repository contains the project developed as part of the Udemy course "[Course Name]" on RPG game development in Unity. The game is a 2D pixelart RPG created with Unity.
+This repository contains the project developed as part of the Udemy course "Aprende a crear un videojuego RPG en 2D con Unity" on RPG game development in Unity. The game is a 2D pixelart RPG created with Unity.
 
 ## Game Description
 
@@ -26,4 +26,4 @@ To try out the game, follow these steps:
 
 ## Credits
 
-This game was created as part of the Udemy course "[Course Name]" taught by [Instructor Name]. I appreciate their dedication and shared knowledge in the development of this project.
+This game was created as part of the Udemy course "Aprende a crear un videojuego RPG en 2D con Unity" taught by Gianny Dantas. I appreciate their dedication and shared knowledge in the development of this project.
