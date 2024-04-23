@@ -9,8 +9,9 @@ namespace Entities
         [SerializeField] private Transform _transform;
         [SerializeField] private Vector3[] _points;
 
-        private Vector3 _startPosition;
+        private Vector3 _actualPosition;
 
+        private bool _isInitialized;
         private const float RADIUS = 0.5f;
         
         #endregion
@@ -18,7 +19,7 @@ namespace Entities
         #region Properties
 
         public Vector3[] Points => _points;
-        public Vector3 StartPosition => _startPosition;
+        public Vector3 ActualPosition => _actualPosition;
         
         #endregion
 
@@ -26,29 +27,38 @@ namespace Entities
 
         private void Awake()
         {
-            _startPosition = _transform.position;
+            _actualPosition = _transform.position;
+            _isInitialized = true;
         }
         
+        #endregion
+
+        #region Methods
+
+        public Vector3 GetNextPoint(int index)
+        {
+            return _actualPosition + _points[index];
+        }
+
         #endregion
 
         #region Gizmos
 
         private void OnDrawGizmos()
         {
-#if UNITY_EDITOR
-            _startPosition = _transform.position;
-#endif
+            if (!_isInitialized)
+                _actualPosition = _transform.position;
 
             if(_points == null || _points.Length == 0) return;
 
             Gizmos.color = Color.blue;
             for (int point = 0; point < _points.Length; point++)
             {
-                Gizmos.DrawWireSphere(_points[point] + _startPosition, RADIUS);
+                Gizmos.DrawWireSphere(_points[point] + _actualPosition, RADIUS);
 
                 if(point < _points.Length - 1)
                 {
-                    Gizmos.DrawLine(_points[point] + _startPosition, _points[point + 1] + _startPosition);
+                    Gizmos.DrawLine(_points[point] + _actualPosition, _points[point + 1] + _actualPosition);
                 }
             }
         }

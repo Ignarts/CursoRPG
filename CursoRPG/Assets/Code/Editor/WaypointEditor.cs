@@ -18,7 +18,7 @@ public class WaypointEditor : Editor
         {
             EditorGUI.BeginChangeCheck();
 
-            Vector3 actualPoint = WaypointTarget.StartPosition + WaypointTarget.Points[point];
+            Vector3 actualPoint = WaypointTarget.ActualPosition + WaypointTarget.Points[point];
             Vector3 newPoint = Handles.FreeMoveHandle(actualPoint, 0.5f, new Vector3(0.3f, 0.3f,0.3f), Handles.SphereHandleCap);
 
             // create text to know point number
@@ -32,7 +32,7 @@ public class WaypointEditor : Editor
             if(EditorGUI.EndChangeCheck())
             {
                 Undo.RecordObject(WaypointTarget, "Change Waypoint Position");
-                WaypointTarget.Points[point] = newPoint - WaypointTarget.StartPosition;
+                WaypointTarget.Points[point] = newPoint - WaypointTarget.ActualPosition;
             }
         }
     }
