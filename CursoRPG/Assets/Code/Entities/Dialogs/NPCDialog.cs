@@ -32,6 +32,8 @@ namespace Entities.Dialogs
         public string NpcName => _npcName;
         public Sprite NpcSprite => _npcSprite;
         public Dialog Dialog => _dialog;
+        public bool HasExtraType => _hasExtraType;
+        public DialogExtraTypes DialogExtraType => _dialogExtraType;
 
         #endregion
     }
@@ -39,8 +41,6 @@ namespace Entities.Dialogs
     [Serializable]
     public struct Dialog
     {
-        private List<string> _dialogLines;
-
-        public List<string> DialogLines => _dialogLines;
+        public List<string> DialogLines;
     }
 }

@@ -168,6 +168,11 @@ namespace UI
             }
         }
 
+        /// <summary>
+        /// Verify if there are more items of the same type
+        /// </summary>
+        /// <param name="itemID"></param>
+        /// <returns></returns>
         private List<int> VerifyStocks(string itemID)
         {
             List<int> indexes = new List<int>();
@@ -182,6 +187,10 @@ namespace UI
             return indexes;
         }
 
+        /// <summary>
+        /// Use item from the inventory
+        /// </summary>
+        /// <param name="index"></param>
         private void UseItem(int index)
         {
             if(index < 0 || index >= _inventoryItems.Length || _inventoryItems[index] == null)
@@ -203,6 +212,11 @@ namespace UI
             }
         }
 
+        /// <summary>
+        /// Move item from one slot to another
+        /// </summary>
+        /// <param name="initialSlotIndex"></param>
+        /// <param name="targetSlotIndex"></param>
         public void MoveItem(int initialSlotIndex, int targetSlotIndex)
         {
             if(_inventoryItems[initialSlotIndex] == null || _inventoryItems[targetSlotIndex] != null)
@@ -228,6 +242,11 @@ namespace UI
 
         #region Events
 
+        /// <summary>
+        /// Slot interaction event
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="index"></param>
         private void SlotInteraction(InteractionType type, int index)
         {            
             switch(type)

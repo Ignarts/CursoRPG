@@ -1,5 +1,7 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace UI
 {
@@ -29,6 +31,14 @@ namespace UI
             StartCoroutine(MovePanel());
         }
 
+        private void Update()
+        {
+            if (Keyboard.current.escapeKey.wasPressedThisFrame && _panelPosition != _restPosition)
+            {
+                ToggleInventoryPanel();
+            }
+        }
+
         #endregion
 
         #region Methods
@@ -48,7 +58,7 @@ namespace UI
                 yield return null;
             }
         }
-        
+
         #endregion
     }
 }

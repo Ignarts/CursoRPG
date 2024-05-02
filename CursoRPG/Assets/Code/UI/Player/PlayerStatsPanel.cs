@@ -45,6 +45,14 @@ namespace UI
             StartCoroutine(MovePanel());
         }
 
+        private void Update()
+        {
+            if(Keyboard.current.escapeKey.wasPressedThisFrame && _panelPosition != _restPosition)
+            {
+                ToggleStatsPanel();
+            }
+        }
+
         private void OnDisable()
         {
             StatsManager.OnStatsUpdated -= SetStatValueTexts;

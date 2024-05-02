@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using TMPro;
+using UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -17,6 +19,9 @@ namespace Entities.Dialogs
         [SerializeField] private Image _icon;
         [SerializeField] private TextMeshProUGUI _name;
         [SerializeField] private TextMeshProUGUI _dialogText;
+
+        [Title("Extra Types Interaction References")]
+        [SerializeField] private QuestsPanel _questsPanel;
 
         private NPCDialog _currentDialog;
         private Queue<string> _dialogLines;
@@ -135,6 +140,12 @@ namespace Entities.Dialogs
         {
             if(_dialogLines.Count == 0)
             {
+                if(_currentDialog.HasExtraType)
+                {
+                    OpenExtraTypeInteractionPanel(_currentDialog.DialogExtraType);
+                    
+                }
+
                 ToggleDialogPanel(false);
                 _isInDialog = false;
                 return;
@@ -163,6 +174,16 @@ namespace Entities.Dialogs
             }
 
             _isTyping = false;
+        }
+
+        private void OpenExtraTypeInteractionPanel(DialogExtraTypes dialogExtraType)
+        {
+            switch(dialogExtraType)
+            {
+                case DialogExtraTypes.Quest:
+                    _questsPanel.ShowQuestsPanel();
+                    break;
+            }
         }
         
         #endregion

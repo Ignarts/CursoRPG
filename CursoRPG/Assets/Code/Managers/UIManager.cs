@@ -13,7 +13,6 @@ namespace Managers
         [SerializeField] private PlayerManaManager _playerManaManager;
         [SerializeField] private PlayerExperienceManager _playerExperienceManager;
         [SerializeField] private PlayerStatsPanel _playerStatsPanel;
-
         [SerializeField] private Inventory _inventory;
 
         [Space(5)]
