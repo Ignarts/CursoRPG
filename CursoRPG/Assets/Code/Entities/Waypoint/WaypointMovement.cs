@@ -16,6 +16,7 @@ namespace Entities
         [SerializeField] private Waypoint _waypoint;
         [SerializeField] private Transform _transform;
         [SerializeField] private SpriteRenderer _spriteRenderer;
+        [SerializeField] private Animator _animator;
         [SerializeField] private float _speed;
         [SerializeField] private bool _waitOnPoint;
         [SerializeField] private float _waitTime;
@@ -23,6 +24,8 @@ namespace Entities
         private MovementState _movementState;
         private int _actualPointIndex;
         private bool _isOnPoint;
+
+        private const string ANIMATION_WALK_VALUE = "Walk";
 
         #endregion
 
@@ -34,7 +37,7 @@ namespace Entities
 
         #region MonoBehaviour Methods
 
-        private void Awake()
+        protected virtual void Awake()
         {
             _actualPointIndex = 0;
             _movementState = MovementState.Moving;
@@ -76,13 +79,14 @@ namespace Entities
                 return;
             }
             
-            FlipSprite();
+            PlayAnimation();
         }
 
         protected virtual void WaitInIdle()
         {
             if(_isOnPoint)
             {
+                _animator.SetFloat(ANIMATION_WALK_VALUE, 0);
                 StartCoroutine(WaitInIdleCoroutine());
                 _isOnPoint = false;
             }
@@ -95,15 +99,39 @@ namespace Entities
             _movementState = MovementState.Moving;
         }
 
-        private void FlipSprite()
+
+        private void PlayAnimation()
         {
             if(_transform.position.x < NextWaypointPoint.x)
             {
-                _spriteRenderer.flipX = false;
+                _animator.SetFloat(ANIMATION_WALK_VALUE, 0);
+                FlipSprite(false);
                 return;
             }
 
-            _spriteRenderer.flipX = true;
+            if(_transform.position.x > NextWaypointPoint.x)
+            {
+                _animator.SetFloat(ANIMATION_WALK_VALUE, 0);
+                FlipSprite(true);
+                return;
+            }
+
+            if(_transform.position.y < NextWaypointPoint.y)
+            {
+                _animator.SetFloat(ANIMATION_WALK_VALUE, 1);
+                return;
+            }
+
+            if(_transform.position.y > NextWaypointPoint.y)
+            {
+                _animator.SetFloat(ANIMATION_WALK_VALUE, 2);
+                return;
+            }
+        }
+
+        private void FlipSprite(bool flip)
+        {
+            _spriteRenderer.flipX = flip;
         }
         
         #endregion

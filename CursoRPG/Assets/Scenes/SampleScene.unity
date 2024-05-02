@@ -29794,7 +29794,7 @@ Transform:
   m_GameObject: {fileID: 2104287015}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.47, y: -0.497, z: 0}
+  m_LocalPosition: {x: 17.47, y: 0.48, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -29837,8 +29837,7 @@ MonoBehaviour:
   _transform: {fileID: 2104287018}
   _points:
   - {x: 0, y: 0, z: 0}
-  - {x: 5.04, y: 0, z: 0}
-  - {x: 2.56, y: -2, z: 0}
+  - {x: 0, y: -3.9, z: 0}
 --- !u!114 &2104287021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29854,6 +29853,7 @@ MonoBehaviour:
   _waypoint: {fileID: 2104287020}
   _transform: {fileID: 2104287018}
   _spriteRenderer: {fileID: 2104287017}
+  _animator: {fileID: 2104287019}
   _speed: 2
   _waitOnPoint: 1
   _waitTime: 2
