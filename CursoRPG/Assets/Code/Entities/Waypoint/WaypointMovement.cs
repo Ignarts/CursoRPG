@@ -26,6 +26,7 @@ namespace Entities
         private bool _isOnPoint;
 
         private const string ANIMATION_WALK_VALUE = "Walk";
+        private const string ANIMATION_IDLE_VALUE = "Idle";
 
         #endregion
 
@@ -104,27 +105,31 @@ namespace Entities
         {
             if(_transform.position.x < NextWaypointPoint.x)
             {
-                _animator.SetFloat(ANIMATION_WALK_VALUE, 0);
+                _animator.SetFloat(ANIMATION_WALK_VALUE, 1);
+                _animator.SetFloat(ANIMATION_IDLE_VALUE, 1);
                 FlipSprite(false);
                 return;
             }
 
             if(_transform.position.x > NextWaypointPoint.x)
             {
-                _animator.SetFloat(ANIMATION_WALK_VALUE, 0);
+                _animator.SetFloat(ANIMATION_WALK_VALUE, 1);
+                _animator.SetFloat(ANIMATION_IDLE_VALUE, 1);
                 FlipSprite(true);
                 return;
             }
 
             if(_transform.position.y < NextWaypointPoint.y)
             {
-                _animator.SetFloat(ANIMATION_WALK_VALUE, 1);
+                _animator.SetFloat(ANIMATION_WALK_VALUE, 2);
+                _animator.SetFloat(ANIMATION_IDLE_VALUE, 2);
                 return;
             }
 
             if(_transform.position.y > NextWaypointPoint.y)
             {
-                _animator.SetFloat(ANIMATION_WALK_VALUE, 2);
+                _animator.SetFloat(ANIMATION_WALK_VALUE, 3);
+                _animator.SetFloat(ANIMATION_IDLE_VALUE, 3);
                 return;
             }
         }
