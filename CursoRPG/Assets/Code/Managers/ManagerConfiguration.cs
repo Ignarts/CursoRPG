@@ -1,3 +1,4 @@
+using Quests;
 using UnityEngine;
 
 namespace Managers
@@ -9,6 +10,8 @@ namespace Managers
         #region Private Attributes
 
         [SerializeField] private UIManager _uiManager;
+        [SerializeField] private QuestManager _questManager;
+        [SerializeField] private PlayerQuestManager _playerQuestManager;
 
         #endregion
 
@@ -23,6 +26,7 @@ namespace Managers
             
             Instance = this;
             DontDestroyOnLoad(gameObject);
+
             ConfigureManagers();
         }
 
@@ -33,6 +37,7 @@ namespace Managers
         private void ConfigureManagers()
         {
             _uiManager.ConfigureManager();
+            _questManager.ConfigureManager();
         }
         
         #endregion

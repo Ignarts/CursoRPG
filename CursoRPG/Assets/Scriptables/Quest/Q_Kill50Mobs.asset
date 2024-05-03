@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d400321031d8a5c46b7958d0bf9ddae5, type: 3}
+  m_Name: Q_Kill50Mobs
+  m_EditorClassIdentifier: 
+  _questName: Expert Hunter
+  _id: Kill50Mobs
+  _description: Kill 50 enemies and become and expert hunter
+  _objectiveCount: 50
+  _isActive: 0
+  _goldReward: 100
+  _experienceReward: 25
+  _questRewardItems:
+  - InventoryItemRewarded: {fileID: 11400000, guid: bae3d0049f3696847aa236b349215adc, type: 2}
+    Amount: 3
+  - InventoryItemRewarded: {fileID: 11400000, guid: 286b0762ba228aa4cb0768393ffd29ec, type: 2}
+    Amount: 3
