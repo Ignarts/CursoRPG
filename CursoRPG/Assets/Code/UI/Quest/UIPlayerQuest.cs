@@ -13,6 +13,24 @@ namespace UI
         [SerializeField] private Transform _container;
 
         [SerializeField] private GameObject _claimButton;
+
+        private Quest _quest;
+        
+        #endregion
+
+        #region MonoBehaviour Methods
+
+        private void OnEnable()
+        {
+            Quest.OnQuestProgress += AddProgress;
+            Quest.OnQuestCompleted += ShowClaimButton;
+        }
+
+        private void OnDisable()
+        {
+            Quest.OnQuestProgress -= AddProgress;
+            Quest.OnQuestCompleted -= ShowClaimButton;
+        }
         
         #endregion
         
@@ -22,26 +40,40 @@ namespace UI
         {
             base.ConfigureQuest(quest);
 
-            _questProgressText.text = $"{quest.CurrentObjectiveCount}/{quest.ObjectiveCount}";
+            _quest = quest;
+            _questProgressText.text = $"{_quest.CurrentObjectiveCount}/{_quest.ObjectiveCount}";
 
-            ConfigureRewards(quest);
+            ConfigureRewards();
 
-            _claimButton.SetActive(quest.IsQuestCompleted);
+            _claimButton.SetActive(_quest.IsQuestCompleted);
         }
 
-        private void ConfigureRewards(Quest quest)
+        private void ConfigureRewards()
         {
             UIRewards goldRewards = Instantiate(_uIRewards, _container);
-            goldRewards.ConfigureReward(quest.GoldReward, RewardType.Gold);
+            goldRewards.ConfigureReward(_quest.GoldReward, RewardType.Gold);
 
             UIRewards xpRewards = Instantiate(_uIRewards, _container);
-            xpRewards.ConfigureReward(quest.ExperienceReward, RewardType.Experience);
+            xpRewards.ConfigureReward(_quest.ExperienceReward, RewardType.Experience);
 
-            foreach ( var QuestRewardItem in quest.QuestRewardItems)
+            foreach ( var QuestRewardItem in _quest.QuestRewardItems)
             {
                 UIRewards rewards = Instantiate(_uIRewards, _container);
                 rewards.ConfigureReward(QuestRewardItem.Amount, QuestRewardItem.InventoryItemRewarded.Icon);
             }
+        }
+
+        private void AddProgress(Quest quest)
+        {
+            if(quest != _quest)
+                return;
+
+            _questProgressText.text = $"{quest.CurrentObjectiveCount}/{quest.ObjectiveCount}";
+        }
+
+        private void ShowClaimButton(Quest quest)
+        {
+            _claimButton.SetActive(true);
         }
 
         #endregion

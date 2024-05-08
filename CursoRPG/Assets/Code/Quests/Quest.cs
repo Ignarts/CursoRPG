@@ -1,4 +1,6 @@
+using System;
 using Sirenix.OdinInspector;
+using UnityEditor.PackageManager;
 using UnityEngine;
 namespace Quests
 {
@@ -20,6 +22,7 @@ namespace Quests
         [SerializeField] private QuestRewardItem[] _questRewardItems;
 
         private int _currentObjectiveCount;
+        private bool _isQuestCompleted;
 
         #endregion
 
@@ -33,8 +36,60 @@ namespace Quests
         public int GoldReward => _goldReward;
         public int ExperienceReward => _experienceReward;
         public QuestRewardItem[] QuestRewardItems => _questRewardItems;
-        public bool IsQuestCompleted { get { return _currentObjectiveCount >= _objectiveCount; } }
+        public bool IsQuestCompleted => _isQuestCompleted;
 
+        #endregion
+
+        #region Events
+
+        public static Action<Quest> OnQuestCompleted;
+        public static Action<Quest> OnQuestProgress;
+        
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// Set the quest as active
+        /// </summary>
+        /// <param name="count"></param>
+        public void AddObjectiveCount(int count)
+        {
+            _currentObjectiveCount += count;
+            OnQuestProgress?.Invoke(this);
+            CheckQuestCompleted();
+        }
+
+        /// <summary>
+        /// Check if the quest is completed
+        /// </summary>
+        private void CheckQuestCompleted()
+        {
+            if (_currentObjectiveCount < _objectiveCount)
+                return;
+
+            _currentObjectiveCount = _objectiveCount;
+            QuestCompleted();
+        }
+
+        /// <summary>
+        /// Called when the quest is completed
+        /// </summary>
+        private void QuestCompleted()
+        {
+            if(_isQuestCompleted)
+                return;
+
+            _isQuestCompleted = true;
+            OnQuestCompleted?.Invoke(this);
+        }
+
+        public void ResetQuest()
+        {
+            _currentObjectiveCount = 0;
+            _isQuestCompleted = false;
+        }
+        
         #endregion
     }
 }

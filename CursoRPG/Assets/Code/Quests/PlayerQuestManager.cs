@@ -27,7 +27,6 @@ namespace Quests
             }
             
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
 
         #endregion
