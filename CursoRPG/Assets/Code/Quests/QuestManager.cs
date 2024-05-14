@@ -14,6 +14,36 @@ namespace Quests
         [Space(15)]
         [SerializeField] private UINPCQuest _uiNPCQuest;
         [SerializeField] private Transform _questContainer;
+
+        [SerializeField] private QuestCompletedPanel _questCompletedPanel;
+        
+        #endregion
+
+        #region Properties
+
+        public Quest UnclaimedQuest { get; private set; }
+        
+        #endregion
+
+        #region MonoBehaviour Methods
+        
+        private void Awake()
+        {
+            foreach (var quest in _questsAvailable)
+            {
+                quest.ResetQuest();
+            }
+        }
+
+        private void OnEnable()
+        {
+            Quest.OnQuestCompleted += QuestCompleted;
+        }
+
+        private void OnDisable()
+        {
+            Quest.OnQuestCompleted -= QuestCompleted;
+        }
         
         #endregion
 
@@ -43,6 +73,16 @@ namespace Quests
 
             quest.AddObjectiveCount(amount);
             Debug.Log($"Quest <color=yellow>{quest.QuestName}</color> progress: <color=yellow>{quest.CurrentObjectiveCount}</color>/<color=yellow>{quest.ObjectiveCount}</color>");
+        }
+
+        private void QuestCompleted(Quest quest)
+        {
+            Assert.IsNotNull(quest, "Quest is null");
+            Debug.Log($"Quest <color=yellow>{quest.QuestName}</color> completed");
+
+            _questCompletedPanel.ConfigureQuestCompletedPanel(quest);
+
+            UnclaimedQuest = quest;
         }
         
         #endregion\

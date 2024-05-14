@@ -24,7 +24,6 @@ namespace UI
         [SerializeField] private Sprite _goldIcon;
         [SerializeField] private Sprite _experienceIcon;
 
-
         #endregion
 
         #region Methods

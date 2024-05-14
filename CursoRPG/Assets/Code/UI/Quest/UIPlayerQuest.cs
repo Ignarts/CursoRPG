@@ -22,6 +22,9 @@ namespace UI
 
         private void OnEnable()
         {
+            if(_quest.IsQuestCompleted)
+                gameObject.SetActive(false);
+            
             Quest.OnQuestProgress += AddProgress;
             Quest.OnQuestCompleted += ShowClaimButton;
         }
@@ -36,6 +39,10 @@ namespace UI
         
         #region UIQuest Base Methods
 
+        /// <summary>
+        /// Configure the quest UI
+        /// </summary>
+        /// <param name="quest"></param>
         public override void ConfigureQuest(Quest quest)
         {
             base.ConfigureQuest(quest);
@@ -48,6 +55,9 @@ namespace UI
             _claimButton.SetActive(_quest.IsQuestCompleted);
         }
 
+        /// <summary>
+        /// Claim the quest rewards
+        /// </summary>
         private void ConfigureRewards()
         {
             UIRewards goldRewards = Instantiate(_uIRewards, _container);
@@ -63,6 +73,10 @@ namespace UI
             }
         }
 
+        /// <summary>
+        /// Add progress to the quest
+        /// </summary>
+        /// <param name="quest"></param>
         private void AddProgress(Quest quest)
         {
             if(quest != _quest)
@@ -71,6 +85,10 @@ namespace UI
             _questProgressText.text = $"{quest.CurrentObjectiveCount}/{quest.ObjectiveCount}";
         }
 
+        /// <summary>
+        /// Show the claim button when the quest is completed
+        /// </summary>
+        /// <param name="quest"></param>
         private void ShowClaimButton(Quest quest)
         {
             _claimButton.SetActive(true);
