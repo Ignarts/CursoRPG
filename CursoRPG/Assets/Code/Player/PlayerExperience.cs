@@ -6,7 +6,7 @@ namespace Player
 {
     public class PlayerExperience : MonoBehaviour
     {
-#region Private Attributes
+        #region Private Attributes
 
         [SerializeField]
         private int _maxLevel;
@@ -20,23 +20,23 @@ namespace Player
         private float _currentTemporalExp;
         private float _nextLevelExp;
 
-#endregion
+        #endregion
 
-#region Public Attributes
+        #region Public Attributes
 
         public static event Action OnExpGained;
 
-#endregion
+        #endregion
 
-#region Properties
+        #region Properties
 
         public int Level { get; private set; }
         public float CurrentTemporalExp => _currentTemporalExp;
         public float NextLevelExp => _nextLevelExp;
 
-#endregion
+        #endregion
 
-#region MonoBehaviour Methods
+        #region MonoBehaviour Methods
 
         private void Start()
         {
@@ -47,15 +47,15 @@ namespace Player
 
         private void Update()
         {
-            if(Keyboard.current.pKey.wasPressedThisFrame)
+            if (Keyboard.current.pKey.wasPressedThisFrame)
             {
                 AddExperience(1);
             }
         }
 
-#endregion
+        #endregion
 
-#region Methods
+        #region Methods
 
         public void AddExperience(float exp)
         {
@@ -79,12 +79,12 @@ namespace Player
 
         private void UpdateLevel()
         {
-            if(Level >= _maxLevel) { return; }
+            if (Level >= _maxLevel) { return; }
 
-            Level ++;
+            Level++;
             _currentTemporalExp = 0;
             _nextLevelExp *= _incrementalExp;
         }
-#endregion
+        #endregion
     }
 }
