@@ -13,17 +13,17 @@ namespace Entities
     {
         #region Private Attributes
 
-        [SerializeField] private Waypoint _waypoint;
-        [SerializeField] private Transform _transform;
-        [SerializeField] private SpriteRenderer _spriteRenderer;
-        [SerializeField] private Animator _animator;
-        [SerializeField] private float _speed;
-        [SerializeField] private bool _waitOnPoint;
-        [SerializeField] private float _waitTime;
+        [SerializeField] protected Waypoint _waypoint;
+        [SerializeField] protected Transform _transform;
+        [SerializeField] protected SpriteRenderer _spriteRenderer;
+        [SerializeField] protected Animator _animator;
+        [SerializeField] protected float _speed;
+        [SerializeField] protected bool _waitOnPoint;
+        [SerializeField] protected float _waitTime;
 
-        private MovementState _movementState;
-        private int _actualPointIndex;
-        private bool _isOnPoint;
+        protected MovementState _movementState;
+        protected int _actualPointIndex;
+        protected bool _isOnPoint;
 
         private const string ANIMATION_WALK_VALUE = "Walk";
         private const string ANIMATION_IDLE_VALUE = "Idle";
@@ -33,6 +33,7 @@ namespace Entities
         #region Properties
 
         public Vector3 NextWaypointPoint => _waypoint.GetNextPoint(_actualPointIndex);
+        public float Speed => _speed;
         
         #endregion
 

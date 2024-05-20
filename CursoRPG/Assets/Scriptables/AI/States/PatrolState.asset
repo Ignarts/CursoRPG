@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: PatrolState
   m_EditorClassIdentifier: 
   _actions:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 3f670a7392c8abd479b98f33d7fa45ba, type: 2}
   _connectors:
-  - decision: {fileID: 0}
-    trueState: {fileID: 0}
-    falseState: {fileID: 0}
+  - decision: {fileID: 11400000, guid: 12edb93d6eec573468fb64fd4333e9cb, type: 2}
+    trueState: {fileID: 11400000, guid: f93f726f93f00a949a9e044f1b6b5d6d, type: 2}
+    falseState: {fileID: 11400000, guid: fe5a08465541ede49aa75cac3a950f99, type: 2}
