@@ -36,6 +36,7 @@ namespace Entities.AI.Decisions
                 return true;
             }
 
+            controller.Target = null;
             return false;
         }
         

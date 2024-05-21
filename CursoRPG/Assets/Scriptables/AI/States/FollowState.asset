@@ -17,5 +17,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ffee16e463d54ca4dbf745e234ce5bbe, type: 2}
   _connectors:
   - decision: {fileID: 11400000, guid: 12edb93d6eec573468fb64fd4333e9cb, type: 2}
-    trueState: {fileID: 11400000, guid: a089f0ff949548f4b84bc5c7537545c1, type: 2}
-    falseState: {fileID: 11400000, guid: fe5a08465541ede49aa75cac3a950f99, type: 2}
+    trueState: {fileID: 11400000}
+    falseState: {fileID: 11400000, guid: a089f0ff949548f4b84bc5c7537545c1, type: 2}

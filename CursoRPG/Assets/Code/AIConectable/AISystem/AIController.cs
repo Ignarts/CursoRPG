@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 namespace Entities.AI
@@ -57,6 +58,20 @@ namespace Entities.AI
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(_transform.position, _detectionRange);
+
+            if(Target != null)
+            {
+                Gizmos.color = Color.green;
+                Vector3 direction = Target.position - _transform.position;
+                Gizmos.DrawRay(_transform.position, direction);
+            }
+
+            if(!Application.isPlaying)
+                return;
+                
+#if UNITY_EDITOR
+            Handles.Label(_transform.position + Vector3.down * 1.2f, ActualState.ToString());
+#endif
         }
         
         #endregion
