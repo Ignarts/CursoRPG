@@ -2,7 +2,10 @@ using UnityEngine;
 
 namespace Entities.AI.Decisions
 {
-    [CreateAssetMenu(menuName = "AI/Decisions/FollowPlayer")]
+    /// <summary>
+    /// Decision to check if the player is chase range
+    /// </summary>
+    [CreateAssetMenu(menuName = "AI/Decisions/FollowPlayer", fileName = "Decision_FollowPlayer")]
     public class DFollowPlayer : AIDecision
     {        
         #region Base Decision Methods

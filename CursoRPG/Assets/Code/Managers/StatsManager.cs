@@ -22,6 +22,9 @@ namespace Managers
         #region Properties
 
         public PlayerStats PlayerStats => _playerStats;
+        public CharacterMovement CharacterMovement => _characterMovement;
+        public PlayerLife PlayerLife => _playerLife;
+        public PlayerMana PlayerMana => _playerMana;
 
         #endregion
 

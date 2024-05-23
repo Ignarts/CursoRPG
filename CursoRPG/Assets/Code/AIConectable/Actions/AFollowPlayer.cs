@@ -2,7 +2,10 @@ using UnityEngine;
 
 namespace Entities.AI.Actions
 {
-    [CreateAssetMenu(menuName = "AI/Actions/FollowPlayer")]
+    /// <summary>
+    /// Action to control the follow behavior to the AIController
+    /// </summary>
+    [CreateAssetMenu(menuName = "AI/Actions/FollowPlayer", fileName = "Action_FollowPlayer")]
     public class AFollowPlayer : AIAction
     {
         #region Const

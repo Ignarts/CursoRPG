@@ -2,7 +2,10 @@ using UnityEngine;
 
 namespace Entities.AI.Actions
 {
-    [CreateAssetMenu(menuName = "AI/Actions/DeactivatePatrol")]
+    /// <summary>
+    /// Action to deactivate the patrol
+    /// </summary>
+    [CreateAssetMenu(menuName = "AI/Actions/DeactivatePatrol", fileName = "Action_DeactivatePatrol")]
     public class ADeactivatePatrol : AIAction
     {
         #region Base Action Methods

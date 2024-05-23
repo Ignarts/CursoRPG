@@ -4,7 +4,10 @@ using UnityEngine;
 
 namespace Entities.AI.Actions
 {
-    [CreateAssetMenu(menuName = "AI/Actions/ActivatePatrol")]
+    /// <summary>
+    /// Action to control the patrol behavior to the AIController
+    /// </summary>
+    [CreateAssetMenu(menuName = "AI/Actions/ActivatePatrol", fileName = "Action_ActivatePatrol")]
     public class AActivatePatrol : AIAction
     {
         #region Base Action Methods
