@@ -785,7 +785,7 @@ MonoBehaviour:
   _enemyMovement: {fileID: 82638253}
   _attackType: 0
   _damage: 10
-  _attackSpeed: 1
+  _attackSpeed: 4
   _attackRange: 2.3
 --- !u!1001 &97974602
 PrefabInstance:

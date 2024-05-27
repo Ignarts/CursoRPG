@@ -136,6 +136,7 @@ namespace Entities.AI
             // calculate the damage to deal and apply it
             damageToDeal = Mathf.Max(damage - _playerStats.Defense, 1);
             _playerLife.TakeDamage(damageToDeal);
+            _nextAttackTime = 0;
         }
         
         #endregion

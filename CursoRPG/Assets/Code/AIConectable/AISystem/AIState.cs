@@ -45,15 +45,28 @@ namespace Entities.AI
         /// <param name="controller"></param>
         public void ExecuteConnections(AIController controller)
         {
+            AIState stateToSet = null;
+            AIState currentState = controller.ActualState;
+        
             foreach (var connector in _connectors)
             {
                 if (connector.decision.Decide(controller))
                 {
-                    controller.ChangeState(connector.trueState);
-                    return;
+                    if (connector.trueState != currentState)
+                    {
+                        stateToSet = connector.trueState;
+                        break;
+                    }
                 }
-
-                controller.ChangeState(connector.falseState);
+                else if (stateToSet == null && connector.falseState != currentState)
+                {
+                    stateToSet = connector.falseState;
+                }
+            }
+        
+            if (stateToSet != null)
+            {
+                controller.ChangeState(stateToSet);
             }
         }
 

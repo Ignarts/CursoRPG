@@ -12,7 +12,6 @@ namespace Entities.AI.Actions
         /// Base Act Method
         /// </summary>
         /// <param name="controller"></param>
-        /// <exception cref="System.NotImplementedException"></exception>
         public override void Act(AIController controller)
         {
             AttackPlayer(controller);
@@ -28,13 +27,16 @@ namespace Entities.AI.Actions
                 return;
             
             if(!controller.CanAttack())
+            {
                 return;
+            }
             
-            if(controller.IsPlayerOnAttackRange())
+            if(controller.IsPlayerOnAttackRange() && controller.CanAttack())
             {
                 controller.MeleeAttack(controller.Damage);
-                controller.UpdateNextAttackTime();
             }
+
+            controller.UpdateNextAttackTime();
         }
     }
 }

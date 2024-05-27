@@ -18,9 +18,9 @@ namespace Entities.AI.Decisions
             if(controller.Target == null)
                 return false;
 
-            float distance = (controller.Target.position - controller.Transform.position).magnitude;
+            float distance = Vector3.Distance(controller.Target.position, controller.Transform.position);
 
-            if(distance < Mathf.Pow(controller.AttackRange, 2))
+            if(distance < controller.AttackRange)
                 return true;
 
             return  false;
