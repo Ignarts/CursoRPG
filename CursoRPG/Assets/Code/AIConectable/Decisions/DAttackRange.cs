@@ -20,7 +20,7 @@ namespace Entities.AI.Decisions
 
             float distance = Vector3.Distance(controller.Target.position, controller.Transform.position);
 
-            if(distance < controller.AttackRange)
+            if(distance < controller.AttackRangeSelected)
                 return true;
 
             return  false;

@@ -1,3 +1,4 @@
+using System.Collections;
 using Managers;
 using Player;
 using Player.Scriptables;
@@ -29,6 +30,8 @@ namespace Entities.AI
         [SerializeField] private float _damage = 1.0f;
         [SerializeField] private float _attackSpeed = 1.0f;
         [SerializeField] private float _attackRange = 1.0f;
+        [SerializeField] private float _rammingRange = 1.0f;
+        [SerializeField] private float _rammingSpeed = 1.0f;
 
         private float _nextAttackTime = 0.0f;
 
@@ -50,8 +53,15 @@ namespace Entities.AI
         public AttackTypes AttackType => _attackType;
         public float Damage => _damage;
         public float AttackSpeed => _attackSpeed;
-        public float AttackRange => _attackRange;
-        
+
+        public float AttackRangeSelected
+        {
+            get
+            {
+                return _attackType == AttackTypes.Melee ? _attackRange : _rammingRange;
+            }
+        }
+
         #endregion
 
         #region MonoBehaviour Methods
@@ -119,6 +129,44 @@ namespace Entities.AI
         }
 
         /// <summary>
+        /// Ramming Attack Logic
+        /// </summary>
+        /// <param name="damage"></param>
+        public void RammingAttack(float damage)
+        {
+            StartCoroutine(RammingAttackCoroutine(damage));
+        }
+
+        /// <summary>
+        /// Ramming Attack Logic with Coroutine
+        /// </summary>
+        /// <param name="damage"></param>
+        /// <returns></returns>
+        private IEnumerator RammingAttackCoroutine(float damage)
+        {
+            // get the target position and the start position
+            Vector3 targetPosition = Target.position;
+            Vector3 startPosition = _transform.position;
+
+            // calculate the direction and the attack position
+            Vector3 direction = (targetPosition - startPosition).normalized;
+            Vector3 attackPosition = startPosition + direction * 0.5f;
+
+            // move the AI to the attack position
+            float transitionAttack = 0.0f;
+            while(transitionAttack <= 1.0f)
+            {
+                transitionAttack += Time.deltaTime * _rammingSpeed;
+                _transform.position = Vector3.Lerp(startPosition, attackPosition, transitionAttack);
+                yield return null;
+            }
+
+            // damage the player
+            if(Target.position != null)
+                DamagePlayer(damage);
+        }
+
+        /// <summary>
         /// Damage the player
         /// </summary>
         private void DamagePlayer(float damage)
@@ -162,8 +210,17 @@ namespace Entities.AI
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(_transform.position, _detectionRange);
 
-            Gizmos.color = Color.blue;
-            Gizmos.DrawWireSphere(_transform.position, _attackRange);
+            if(_attackType == AttackTypes.Melee)
+            {
+                Gizmos.color = Color.blue;
+                Gizmos.DrawWireSphere(_transform.position, _attackRange);
+            }
+
+            if(_attackType == AttackTypes.Range)
+            {
+                Gizmos.color = Color.yellow;
+                Gizmos.DrawWireSphere(_transform.position, _rammingRange);
+            }
         }
 
         private void DrawRayGizmos()
