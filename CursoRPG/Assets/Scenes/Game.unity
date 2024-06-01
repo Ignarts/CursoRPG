@@ -4139,7 +4139,7 @@ MonoBehaviour:
   _attackSpeed: 4
   _attackRange: 2.3
   _rammingRange: 2.7
-  _rammingSpeed: 5
+  _rammingSpeed: 20
 --- !u!50 &513589602
 Rigidbody2D:
   serializedVersion: 4

@@ -37,6 +37,7 @@ namespace Entities.AI
 
         private PlayerStats _playerStats;
         private PlayerLife _playerLife;
+        private bool isRamming = false;
         
         #endregion
 
@@ -134,7 +135,8 @@ namespace Entities.AI
         /// <param name="damage"></param>
         public void RammingAttack(float damage)
         {
-            StartCoroutine(RammingAttackCoroutine(damage));
+            if(!isRamming)
+                StartCoroutine(RammingAttackCoroutine(damage));
         }
 
         /// <summary>
@@ -144,6 +146,8 @@ namespace Entities.AI
         /// <returns></returns>
         private IEnumerator RammingAttackCoroutine(float damage)
         {
+            isRamming = true;
+
             // get the target position and the start position
             Vector3 targetPosition = Target.position;
             Vector3 startPosition = _transform.position;
@@ -162,8 +166,10 @@ namespace Entities.AI
             }
 
             // damage the player
-            if(Target.position != null)
+            if(Target != null)
                 DamagePlayer(damage);
+            
+            isRamming = false;
         }
 
         /// <summary>

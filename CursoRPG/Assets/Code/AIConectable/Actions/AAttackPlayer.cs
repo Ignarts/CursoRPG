@@ -27,13 +27,11 @@ namespace Entities.AI.Actions
                 return;
             
             if(!controller.CanAttack())
-            {
                 return;
-            }
             
             if(controller.IsPlayerOnAttackRange() && controller.CanAttack())
             {
-                if(controller.AttackType == AttackTypes.Melee)
+                if(controller.AttackType == AttackTypes.Range)
                     controller.RammingAttack(controller.Damage);
                 else
                     controller.MeleeAttack(controller.Damage);
