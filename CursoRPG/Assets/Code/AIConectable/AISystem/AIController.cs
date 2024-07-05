@@ -147,15 +147,15 @@ namespace Entities.AI
         private IEnumerator RammingAttackCoroutine(float damage)
         {
             isRamming = true;
-
+        
             // get the target position and the start position
             Vector3 targetPosition = Target.position;
             Vector3 startPosition = _transform.position;
-
+        
             // calculate the direction and the attack position
-            Vector3 direction = (targetPosition - startPosition).normalized;
-            Vector3 attackPosition = startPosition + direction * 0.5f;
-
+            Vector3 direction = (targetPosition - startPosition);
+            Vector3 attackPosition = startPosition + direction;
+        
             // move the AI to the attack position
             float transitionAttack = 0.0f;
             while(transitionAttack <= 1.0f)
@@ -164,11 +164,20 @@ namespace Entities.AI
                 _transform.position = Vector3.Lerp(startPosition, attackPosition, transitionAttack);
                 yield return null;
             }
-
+        
             // damage the player
             if(Target != null)
                 DamagePlayer(damage);
-            
+        
+            // Return to start position
+            float transitionBack = 0.0f;
+            while(transitionBack <= 1.0f)
+            {
+                transitionBack += Time.deltaTime * _rammingSpeed;
+                _transform.position = Vector3.Lerp(attackPosition, startPosition, transitionBack);
+                yield return null;
+            }
+        
             isRamming = false;
         }
 

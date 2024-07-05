@@ -4136,10 +4136,10 @@ MonoBehaviour:
   _enemyMovement: {fileID: 513589599}
   _attackType: 1
   _damage: 10
-  _attackSpeed: 4
+  _attackSpeed: 2
   _attackRange: 2.3
   _rammingRange: 2.7
-  _rammingSpeed: 20
+  _rammingSpeed: 5
 --- !u!50 &513589602
 Rigidbody2D:
   serializedVersion: 4
