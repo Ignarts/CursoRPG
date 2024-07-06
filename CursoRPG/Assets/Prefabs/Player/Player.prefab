@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: 7378893647176429178}
   - component: {fileID: 2075124811294398218}
   - component: {fileID: 2860219994362611164}
+  - component: {fileID: 4145005569300142787}
+  - component: {fileID: 4278084034433133806}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -36,7 +38,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1128173915651124373}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2326304164541053677
@@ -247,3 +250,63 @@ MonoBehaviour:
   _maxLevel: 20
   _baseExp: 10
   _incrementalExp: 2
+--- !u!114 &4145005569300142787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2887441403166057025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc21986a5472c0e41bef131bcca501dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _poolSize: 20
+--- !u!114 &4278084034433133806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2887441403166057025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65610d6288f225e4f95ac40e2e21a422, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerHitVFX: {fileID: 2570464772460647765, guid: bab355c7a0aaea343861f6f26a659d3d, type: 3}
+  _canvasHitVFXPosition: {fileID: 1128173915651124373}
+  _objectPooler: {fileID: 4145005569300142787}
+  _hitVFXTime: 1.5
+--- !u!1 &9167571362210348070
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1128173915651124373}
+  m_Layer: 6
+  m_Name: DamageTextPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1128173915651124373
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9167571362210348070}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.49, y: -0.37, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 494715359616939451}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

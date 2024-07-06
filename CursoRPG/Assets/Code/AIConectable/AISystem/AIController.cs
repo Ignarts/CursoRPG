@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using Managers;
 using Player;
 using Player.Scriptables;
 using UnityEditor;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Entities.AI
 {
@@ -63,6 +65,12 @@ namespace Entities.AI
             }
         }
 
+        #endregion
+
+        #region Events
+
+        public static event Action<float> OnDamageDealt;
+        
         #endregion
 
         #region MonoBehaviour Methods
@@ -200,6 +208,7 @@ namespace Entities.AI
             damageToDeal = Mathf.Max(damage - _playerStats.Defense, 1);
             _playerLife.TakeDamage(damageToDeal);
             _nextAttackTime = 0;
+            OnDamageDealt?.Invoke(damageToDeal);
         }
         
         #endregion
