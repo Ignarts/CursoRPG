@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af884459ae0d6704e97131f187be34ef, type: 3}
+  m_Name: Item_Weapon_Trident
+  m_EditorClassIdentifier: 
+  id: Weapon_Trident
+  _itemName: Trident
+  _itemType: 0
+  _icon: {fileID: 21300000, guid: 720534256d431dd45ad7bfac76e351df, type: 3}
+  _description: A weapon with a longer range than common swords, but also more complicated
+    to handle
+  _isConsumable: 0
+  _isStackable: 0
+  _maxStackableAmount: 1
+  _weapon: {fileID: 11400000, guid: a515796dcb7ffa9448b98c9a06db8dbf, type: 2}
