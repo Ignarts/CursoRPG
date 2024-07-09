@@ -124,6 +124,9 @@ namespace UI.Buttons
         /// </summary>
         public void OnEquipItem()
         {
+            if(Inventory.Instance.InventoryItems[_slotIndex] == null)
+                return;
+            
             OnSlotInteraction?.Invoke(InteractionType.Equip, _slotIndex);
         }
 
@@ -132,6 +135,9 @@ namespace UI.Buttons
         /// </summary>
         public void OnRemoveItem()
         {
+            if(Inventory.Instance.InventoryItems[_slotIndex] == null)
+                return;
+            
             OnSlotInteraction?.Invoke(InteractionType.Remove, _slotIndex);
         }
         

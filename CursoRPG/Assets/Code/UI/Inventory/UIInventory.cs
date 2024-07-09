@@ -182,6 +182,30 @@ namespace UI
             SelectedSlot.SelectButton();
         }
 
+        /// <summary>
+        /// Equip the selected item (only for weapons)
+        /// </summary>
+        public void EquipItem()
+        {
+            if(SelectedSlot == null)
+                return;
+
+            SelectedSlot.OnEquipItem();
+            SelectedSlot.SelectButton();
+        }
+
+        /// <summary>
+        /// Remove the selected item (only for weapons)
+        /// </summary>
+        public void RemoveItem()
+        {
+            if(SelectedSlot == null)
+                return;
+
+            SelectedSlot.OnRemoveItem();
+            SelectedSlot.SelectButton();
+        }
+
         #endregion
     }
 }

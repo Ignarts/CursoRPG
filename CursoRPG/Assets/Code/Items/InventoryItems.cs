@@ -80,17 +80,17 @@ namespace Items
 
         public virtual bool UseItem()
         {
-            return true;
+            return false;
         }
 
         public virtual bool EquipItem()
         {
-            return true;
+            return false;
         }
 
         public virtual bool RemoveItem()
         {
-            return true;
+            return false;
         }
 
         #endregion

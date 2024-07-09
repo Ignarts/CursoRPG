@@ -29,5 +29,13 @@ namespace Weapons
         [SerializeField] protected float _blockChance;
 
         #endregion
+
+        #region Properties
+
+        public Sprite WeaponIcon => _weaponIcon;
+        public Sprite SkillIcon => _skillIcon;
+        public WeaponType WeaponType => _weaponType;
+        
+        #endregion
     }
 }

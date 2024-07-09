@@ -213,6 +213,36 @@ namespace UI
         }
 
         /// <summary>
+        /// Equip item from the inventory (only weapons can be equipped)
+        /// </summary>
+        /// <param name="index"></param>
+        private void EquipItem(int index)
+        {
+            if(index < 0 || index >= _inventoryItems.Length || _inventoryItems[index] == null)
+                return;
+            
+            if(_inventoryItems[index].ItemType != ItemType.Weapon)
+                return;
+                
+            _inventoryItems[index].EquipItem();
+        }
+
+        /// <summary>
+        /// Remove item from the inventory (only weapons can be removed)
+        /// </summary>
+        /// <param name="index"></param>
+        private void RemoveItem(int index)
+        {
+            if(index < 0 || index >= _inventoryItems.Length || _inventoryItems[index] == null)
+                return;
+            
+            if(_inventoryItems[index].ItemType != ItemType.Weapon)
+                return;
+                
+            _inventoryItems[index].RemoveItem();
+        }
+
+        /// <summary>
         /// Move item from one slot to another
         /// </summary>
         /// <param name="initialSlotIndex"></param>
@@ -255,8 +285,10 @@ namespace UI
                     UseItem(index);
                     break;
                 case InteractionType.Remove:
+                    RemoveItem(index);
                     break;
                 case InteractionType.Equip:
+                    EquipItem(index);
                     break;
             }
         }
