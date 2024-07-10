@@ -27,13 +27,17 @@ namespace Player
         private void OnEnable()
         {
             TargetSelectionManager.OnEnemySelected += EnemySelectedWithRangeWeapon;
-            TargetSelectionManager.OnTargetNotSelected += EnemyNotSelected;
+            TargetSelectionManager.OnTargetNotSelected += EnemyNotSelectedWithRangeWeapon;
+            MeleeTargetSelector.OnEnemyDetected += EnemySelectedWithMeleeWeapon;
+            MeleeTargetSelector.OnEnemyLost += EnemyNotSelectedWithMeleeWeapon;
         }
 
         private void OnDisable()
         {
             TargetSelectionManager.OnEnemySelected -= EnemySelectedWithRangeWeapon;
-            TargetSelectionManager.OnTargetNotSelected += EnemyNotSelected;
+            TargetSelectionManager.OnTargetNotSelected += EnemyNotSelectedWithRangeWeapon;
+            MeleeTargetSelector.OnEnemyDetected -= EnemySelectedWithMeleeWeapon;
+            MeleeTargetSelector.OnEnemyLost -= EnemyNotSelectedWithMeleeWeapon;
         }
         
         #endregion
@@ -80,21 +84,45 @@ namespace Player
                 return;
 
             TargetEnemy = enemy;
-            TargetEnemy.ShowSelectedIndicator(true);
-            Debug.Log($"Selected <color=red>{TargetEnemy.name}</color> as target");
+            TargetEnemy.ShowRangeSelectedIndicator(true);
+            Debug.Log($"Selected <color=red>{TargetEnemy.name}</color> as range target");
+        }
+
+        /// <summary>
+        /// Attack the target enemy with the Melee equipped weapon
+        /// </summary>
+        /// <param name="enemy"></param>
+        private void EnemySelectedWithMeleeWeapon(EnemyInteraction enemy)
+        {
+            if(EquippedWeapon == null || EquippedWeapon.WeaponType == WeaponType.Magic)
+                return;
+
+            TargetEnemy = enemy;
+            TargetEnemy.ShowMeleeSelectedIndicator(true);
+            Debug.Log($"Selected <color=red>{TargetEnemy.name}</color> as melee target");
         }
 
         /// <summary>
         /// Remove the selected enemy
         /// </summary>
-        private void EnemyNotSelected()
+        private void EnemyNotSelectedWithRangeWeapon()
         {
             if(TargetEnemy == null)
                 return;
 
-            TargetEnemy.ShowSelectedIndicator(false);
+            TargetEnemy.ShowRangeSelectedIndicator(false);
             TargetEnemy = null;
             Debug.Log("No target selected");
+        }
+
+        private void EnemyNotSelectedWithMeleeWeapon()
+        {
+            if(TargetEnemy == null)
+                return;
+            
+            TargetEnemy.ShowMeleeSelectedIndicator(false);
+            TargetEnemy = null;
+            Debug.Log("Melee target lost");
         }
         
         #endregion

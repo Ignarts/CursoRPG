@@ -6,7 +6,8 @@ namespace Entities.AI
     {
         #region Private Attributes
 
-        [SerializeField] private GameObject _selectedIndicator;
+        [SerializeField] private GameObject _selectedRangeIndicator;
+        [SerializeField] private GameObject _selectedMeleeIndicator;
         
         #endregion
 
@@ -14,7 +15,8 @@ namespace Entities.AI
 
         private void Awake()
         {
-            ShowSelectedIndicator(false);
+            ShowRangeSelectedIndicator(false);
+            ShowMeleeSelectedIndicator(false);
         }
         
         #endregion
@@ -22,12 +24,21 @@ namespace Entities.AI
         #region Methods
 
         /// <summary>
-        /// Show or hide the selected indicator
+        /// Show or hide the selected indicator for range weapons
         /// </summary>
         /// <param name="show"></param>
-        public void ShowSelectedIndicator(bool show)
+        public void ShowRangeSelectedIndicator(bool show)
         {
-            _selectedIndicator.SetActive(show);
+            _selectedRangeIndicator.SetActive(show);
+        }
+
+        /// <summary>
+        /// Show or hide the selected indicator for melee weapons
+        /// </summary>
+        /// <param name="show"></param>
+        public void ShowMeleeSelectedIndicator(bool show)
+        {
+            _selectedMeleeIndicator.SetActive(show);
         }
         
         #endregion
