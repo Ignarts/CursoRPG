@@ -1,3 +1,5 @@
+using Battle;
+using Entities.AI;
 using Player.Scriptables;
 using UnityEngine;
 using Weapons;
@@ -16,6 +18,23 @@ namespace Player
         #region Properties
 
         public Weapon EquippedWeapon { get; private set; }
+        public EnemyInteraction TargetEnemy { get; private set;}
+        
+        #endregion
+
+        #region MonoBehaviour Methods
+
+        private void OnEnable()
+        {
+            TargetSelectionManager.OnEnemySelected += EnemySelectedWithRangeWeapon;
+            TargetSelectionManager.OnTargetNotSelected += EnemyNotSelected;
+        }
+
+        private void OnDisable()
+        {
+            TargetSelectionManager.OnEnemySelected -= EnemySelectedWithRangeWeapon;
+            TargetSelectionManager.OnTargetNotSelected += EnemyNotSelected;
+        }
         
         #endregion
 
@@ -49,6 +68,33 @@ namespace Player
                 _pooler.ClearPool();
 
             EquippedWeapon = null;
+        }
+
+        /// <summary>
+        /// Attack the target enemy with the Magic equipped weapon
+        /// </summary>
+        /// <param name="enemy"></param>
+        private void EnemySelectedWithRangeWeapon(EnemyInteraction enemy)
+        {
+            if(EquippedWeapon == null || EquippedWeapon.WeaponType == WeaponType.Melee || TargetEnemy == enemy)
+                return;
+
+            TargetEnemy = enemy;
+            TargetEnemy.ShowSelectedIndicator(true);
+            Debug.Log($"Selected <color=red>{TargetEnemy.name}</color> as target");
+        }
+
+        /// <summary>
+        /// Remove the selected enemy
+        /// </summary>
+        private void EnemyNotSelected()
+        {
+            if(TargetEnemy == null)
+                return;
+
+            TargetEnemy.ShowSelectedIndicator(false);
+            TargetEnemy = null;
+            Debug.Log("No target selected");
         }
         
         #endregion
