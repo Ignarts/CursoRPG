@@ -1,5 +1,50 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &858462545807660878
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4390960544475725989}
+  - component: {fileID: 1292126027734730002}
+  m_Layer: 6
+  m_Name: PoolerVFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4390960544475725989
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 858462545807660878}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 494715359616939451}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1292126027734730002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 858462545807660878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc21986a5472c0e41bef131bcca501dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _poolSize: 10
 --- !u!1 &2887441403166057025
 GameObject:
   m_ObjectHideFlags: 0
@@ -17,8 +62,8 @@ GameObject:
   - component: {fileID: 7378893647176429178}
   - component: {fileID: 2075124811294398218}
   - component: {fileID: 2860219994362611164}
-  - component: {fileID: 4145005569300142787}
   - component: {fileID: 4278084034433133806}
+  - component: {fileID: 1469352114710347767}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -40,6 +85,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1128173915651124373}
+  - {fileID: 2840491155025412461}
+  - {fileID: 4390960544475725989}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2326304164541053677
@@ -205,6 +252,7 @@ MonoBehaviour:
   _speed: 8
   _animator: {fileID: 2083814920382842090}
   _playerLife: {fileID: 7378893647176429178}
+  _playerAttack: {fileID: 1469352114710347767}
 --- !u!114 &7378893647176429178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,19 +298,6 @@ MonoBehaviour:
   _maxLevel: 20
   _baseExp: 10
   _incrementalExp: 2
---- !u!114 &4145005569300142787
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2887441403166057025}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc21986a5472c0e41bef131bcca501dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _poolSize: 20
 --- !u!114 &4278084034433133806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,8 +312,67 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerHitVFX: {fileID: 2570464772460647765, guid: bab355c7a0aaea343861f6f26a659d3d, type: 3}
   _canvasHitVFXPosition: {fileID: 1128173915651124373}
-  _objectPooler: {fileID: 4145005569300142787}
+  _objectPooler: {fileID: 1292126027734730002}
   _hitVFXTime: 1.5
+--- !u!114 &1469352114710347767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2887441403166057025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 728779326b8297d40ae43e7868179589, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pooler: {fileID: 7509465824854053631}
+  _playerStats: {fileID: 11400000, guid: fdd0d95b016479e4e9946b4817d75b1d, type: 2}
+--- !u!1 &7295337561123802116
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2840491155025412461}
+  - component: {fileID: 7509465824854053631}
+  m_Layer: 6
+  m_Name: PoolerWeapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2840491155025412461
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7295337561123802116}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 494715359616939451}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7509465824854053631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7295337561123802116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc21986a5472c0e41bef131bcca501dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _poolSize: 15
 --- !u!1 &9167571362210348070
 GameObject:
   m_ObjectHideFlags: 0

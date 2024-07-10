@@ -30,7 +30,7 @@ namespace UI
 
         public UIInventory UIInventory => _uiInventory;
         public InventoryItems[] InventoryItems => _inventoryItems;
-        public CharacterMovement PlayerMovement => _player;
+        public CharacterMovement Player => _player;
         public PlayerLife PlayerLife => _player.GetComponent<PlayerLife>();
         public PlayerMana PlayerMana => _player.GetComponent<PlayerMana>();
         

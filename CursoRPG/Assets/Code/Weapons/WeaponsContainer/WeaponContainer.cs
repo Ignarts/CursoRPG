@@ -1,9 +1,9 @@
 using Items;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
-using Weapons;
 
-namespace UI
+namespace Weapons
 {
     public class WeaponContainer : MonoBehaviour
     {
@@ -45,8 +45,9 @@ namespace UI
         public void EquipWeapon(WeaponItem weaponItem)
         {
             EquippedWeapon = weaponItem;
-            
             Weapon weapon = weaponItem.Weapon;
+            Inventory.Instance.Player.PlayerAttack.EquipWeapon(weapon);
+            
             weaponIcon.sprite = weapon.WeaponIcon;
             weaponIcon.gameObject.SetActive(true);
 
@@ -63,6 +64,7 @@ namespace UI
         public void RemoveWeapon()
         {
             EquippedWeapon = null;
+            Inventory.Instance.Player.PlayerAttack.RemoveEquippedWeapon();
             weaponIcon.gameObject.SetActive(false);
             weaponSkillIcon.gameObject.SetActive(false);
         }

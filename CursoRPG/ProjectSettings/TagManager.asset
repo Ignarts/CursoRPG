@@ -59,6 +59,9 @@ TagManager:
   - name: Player
     uniqueID: 2078246657
     locked: 0
+  - name: Projectile
+    uniqueID: 2998107407
+    locked: 0
   - name: DecorationTop
     uniqueID: 2758471961
     locked: 0

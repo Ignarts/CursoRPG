@@ -20,6 +20,10 @@ public class ObjectPooler : MonoBehaviour
 
     #region Methods
 
+    /// <summary>
+    /// Create the pooler with the object to pool
+    /// </summary>
+    /// <param name="objectToPool"></param>
     public void CreatePooler(GameObject objectToPool)
     {
         _pool = new List<GameObject>();
@@ -31,6 +35,11 @@ public class ObjectPooler : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Add an instance of the object to the pool
+    /// </summary>
+    /// <param name="objectToPool"></param>
+    /// <returns></returns>
     private GameObject AddInstanceToPool(GameObject objectToPool)
     {
         GameObject newObject = Instantiate(objectToPool, _poolContainer.transform);
@@ -39,6 +48,10 @@ public class ObjectPooler : MonoBehaviour
         return newObject;
     }
 
+    /// <summary>
+    /// Get an instance of the object from the pool
+    /// </summary>
+    /// <returns></returns>
     public GameObject GetInstance()
     {
         for(int i = 0; i < _pool.Count; i++)
@@ -50,6 +63,15 @@ public class ObjectPooler : MonoBehaviour
         }
 
         return null;
+    }
+
+    /// <summary>
+    /// Clear the pool
+    /// </summary>
+    public void ClearPool()
+    {
+        Destroy(_poolContainer);
+        _pool.Clear();
     }
     
     #endregion

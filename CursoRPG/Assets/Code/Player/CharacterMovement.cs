@@ -11,17 +11,21 @@ namespace Player
         #region Private Attributes
 
         [SerializeField] private Rigidbody2D _rb;
-
         [SerializeField] private float _speed = 8.0f;
-
         [SerializeField] private Animator _animator;
-
         [SerializeField] private PlayerLife _playerLife;
+        [SerializeField] private PlayerAttack _playerAttack;
 
         private PlayerAnimations _playerAnimations;
         private Vector2 _moveInput;
         private Keyboard _keyboard;
 
+        #endregion
+
+        #region Properties
+
+        public PlayerAttack PlayerAttack => _playerAttack;
+        
         #endregion
 
         #region MonoBehaviour Methods

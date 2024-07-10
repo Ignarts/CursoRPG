@@ -2,6 +2,7 @@ using System;
 using Entities.Scriptables;
 using Managers;
 using UnityEngine;
+using Weapons;
 
 namespace Player.Scriptables
 {
@@ -100,6 +101,28 @@ namespace Player.Scriptables
             _attackSpeed -= 0.1f;
             _criticalBonus += 0.1f;
             _blockBonus += 0.1f;
+        }
+
+        /// <summary>
+        /// Method to add bonus stats per weapon to the player.
+        /// </summary>
+        /// <param name="weapon"></param>
+        public void AddBonusPerWeapon(Weapon weapon)
+        {
+            _damage += weapon.WeaponDamage;
+            _attackSpeed += weapon.WeaponCritChance;
+            _blockChance += weapon.WeaponBlockChance;
+        }
+
+        /// <summary>
+        /// Method to remove bonus stats per weapon to the player.
+        /// </summary>
+        /// <param name="weapon"></param>
+        public void RemoveBonusPerWeapon(Weapon weapon)
+        {
+            _damage -= weapon.WeaponDamage;
+            _attackSpeed -= weapon.WeaponCritChance;
+            _blockChance -= weapon.WeaponBlockChance;
         }
 
         /// <summary>
