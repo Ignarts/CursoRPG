@@ -1,3 +1,4 @@
+using System.Collections;
 using Battle;
 using Entities.AI;
 using Player.Scriptables;
@@ -30,6 +31,7 @@ namespace Player
 
         public Weapon EquippedWeapon { get; private set; }
         public EnemyInteraction TargetEnemy { get; private set;}
+        public bool IsAttacking {get; private set;}
         
         #endregion
 
@@ -53,6 +55,7 @@ namespace Player
                     Debug.Log("Melee attack not implemented yet");
                 
                 _nextAttackTime = Time.time + _rangeAttackSpeed;
+                StartCoroutine(SetAttackCondition());
             }
         }
         
@@ -129,6 +132,14 @@ namespace Player
             projectile.gameObject.SetActive(true);
 
             _playerMana.UseMana(EquippedWeapon.ManaRequired);
+        }
+
+        private IEnumerator SetAttackCondition()
+        {
+            IsAttacking = true;
+            _characterMovement.PlayerAnimations.PlayAttackAnimation(_rangeAttackDirection);
+            yield return new WaitForSeconds(0.3f);
+            IsAttacking = false;
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ namespace Player
 
         public PlayerAttack PlayerAttack => _playerAttack;
         public Vector2 MoveInput => _moveInput;
+        public PlayerAnimations PlayerAnimations => _playerAnimations;
         
         #endregion
 
