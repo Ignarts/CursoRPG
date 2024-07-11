@@ -23,9 +23,9 @@ namespace Weapons
 
         [ShowIf("_weaponType", WeaponType.Magic)]
         [Header("Magic Weapon Configuration")]
-        public float _manaRequired;
+        [SerializeField] private int _manaRequired;
         [ShowIf("_weaponType", WeaponType.Magic)]
-        public Projectile _projectilePrefab;
+        [SerializeField] private Projectile _projectilePrefab;
 
         [Header("Stats")]
         [SerializeField] protected float _critChance;
@@ -41,6 +41,8 @@ namespace Weapons
         public int WeaponDamage => _weaponDamage;
         public float WeaponCritChance => _critChance;
         public float WeaponBlockChance => _blockChance;
+        public int ManaRequired => _manaRequired;
+        public Projectile ProjectilePrefab => _projectilePrefab;
         
         #endregion
     }

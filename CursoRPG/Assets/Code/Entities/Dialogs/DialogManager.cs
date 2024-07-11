@@ -62,7 +62,10 @@ namespace Entities.Dialogs
         }
 
         private void Update()
-        {            
+        {
+            if(!_dialogPanel.activeSelf)
+                return;
+            
             if(Keyboard.current.spaceKey.wasPressedThisFrame)
             {
                 if(_isTyping)

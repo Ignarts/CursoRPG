@@ -60,7 +60,7 @@ namespace Entities
             }
         }
 
-        protected virtual void UseMana(int manaAmount)
+        public virtual void UseMana(int manaAmount)
         {
             if(manaAmount <= 0 || _currentMana < manaAmount) { return; }
 

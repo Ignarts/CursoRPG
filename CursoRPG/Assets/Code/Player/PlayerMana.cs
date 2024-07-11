@@ -24,7 +24,7 @@ namespace Player
             base.ManaRegeneration();
         }
 
-        protected override void UseMana(int manaAmount)
+        public override void UseMana(int manaAmount)
         {
             if(!_playerLife.IsPlayerAlive) { return; }
 

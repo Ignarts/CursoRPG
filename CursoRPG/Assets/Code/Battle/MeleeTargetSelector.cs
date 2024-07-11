@@ -25,7 +25,7 @@ namespace Battle
         #region MonoBehaviour Methods
 
         private void OnTriggerEnter2D(Collider2D other)
-        {
+        {            
             if(other.CompareTag("Enemy"))
             {
                 TargetEnemy = other.GetComponent<EnemyInteraction>();

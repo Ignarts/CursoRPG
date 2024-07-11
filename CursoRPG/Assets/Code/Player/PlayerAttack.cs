@@ -2,6 +2,7 @@ using Battle;
 using Entities.AI;
 using Player.Scriptables;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Weapons;
 
 namespace Player
@@ -12,6 +13,16 @@ namespace Player
 
         [SerializeField] private ObjectPooler _pooler;
         [SerializeField] private PlayerStats _playerStats;
+        [SerializeField] private PlayerMana _playerMana;
+
+        [Header("Range Attack Settings")]
+        [SerializeField] private float _rangeAttackSpeed;
+        [Tooltip("Order: Up, Right, Down, Left")]
+        [SerializeField] private Transform[] _rangeAttackPositions;
+        [SerializeField] private CharacterMovement _characterMovement;
+
+        private int _rangeAttackDirection;
+        private float _nextAttackTime;
         
         #endregion
         
@@ -24,6 +35,27 @@ namespace Player
 
         #region MonoBehaviour Methods
 
+        private void Update()
+        {
+            GetRangeAttackDirection();
+
+            if(Time.time < _nextAttackTime)
+                return;
+
+            if(EquippedWeapon == null || TargetEnemy == null)
+                return;
+
+            if(Keyboard.current.spaceKey.isPressed)
+            {
+                if(EquippedWeapon.WeaponType == WeaponType.Magic)
+                    AttackWithRangeWeapon();
+                else
+                    Debug.Log("Melee attack not implemented yet");
+                
+                _nextAttackTime = Time.time + _rangeAttackSpeed;
+            }
+        }
+        
         private void OnEnable()
         {
             TargetSelectionManager.OnEnemySelected += EnemySelectedWithRangeWeapon;
@@ -55,7 +87,7 @@ namespace Player
             _playerStats.AddBonusPerWeapon(weapon);
 
             if(weapon.WeaponType == WeaponType.Magic)
-                _pooler.CreatePooler(weapon._projectilePrefab.gameObject);
+                _pooler.CreatePooler(weapon.ProjectilePrefab.gameObject);
         }
 
         /// <summary>
@@ -72,6 +104,31 @@ namespace Player
                 _pooler.ClearPool();
 
             EquippedWeapon = null;
+        }
+
+        /// <summary>
+        /// Attack the target enemy with the magic equipped weapon
+        /// </summary>
+        public void AttackWithRangeWeapon()
+        {
+            if(EquippedWeapon == null || EquippedWeapon.WeaponType == WeaponType.Melee || TargetEnemy == null)
+                return;
+
+            if(_playerMana.CurrentMana < EquippedWeapon.ManaRequired)
+            {
+                Debug.Log("Not enough mana to attack");
+                return;
+            }
+
+            GameObject newProjectile = _pooler.GetInstance();
+            newProjectile.transform.position = _rangeAttackPositions[_rangeAttackDirection].position;
+
+            Projectile projectile = newProjectile.GetComponent<Projectile>();
+            projectile.InitProjectile(TargetEnemy);
+
+            projectile.gameObject.SetActive(true);
+
+            _playerMana.UseMana(EquippedWeapon.ManaRequired);
         }
 
         /// <summary>
@@ -123,6 +180,20 @@ namespace Player
             TargetEnemy.ShowMeleeSelectedIndicator(false);
             TargetEnemy = null;
             Debug.Log("Melee target lost");
+        }
+
+        private void GetRangeAttackDirection()
+        {
+            Vector2 direction = _characterMovement.MoveInput;
+
+            if(direction.x > 0.1f)
+                _rangeAttackDirection = 1;
+            else if(direction.x < -0.1f)
+                _rangeAttackDirection = 3;
+            else if(direction.y > 0.1f)
+                _rangeAttackDirection = 0;
+            else if(direction.y < -0.1f)
+                _rangeAttackDirection = 2;
         }
         
         #endregion
