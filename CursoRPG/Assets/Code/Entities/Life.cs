@@ -1,18 +1,25 @@
-using System;
 using UnityEngine;
 
 namespace Entities
 {
     public class Life : MonoBehaviour, IDamageable
     {
-        [SerializeField]
-        private float _currentLife;
+        #region Private Attributes
+        
+        [SerializeField] private float _currentLife;
 
-        [SerializeField]
-        private float _maxLife;
+        [SerializeField] private float _maxLife;
 
+        #endregion
+
+        #region Properties
+        
         public float MaxLife => _maxLife;
         public float CurrentLife => _currentLife;
+
+        #endregion
+        
+        #region Methods
 
         public virtual void Configure()
         {
@@ -23,13 +30,13 @@ namespace Entities
         {
             if(damage <= 0) { return; }
 
+            _currentLife -= damage;
+
             if(_currentLife <= 0)
             {
                 Defeated();
                 return;
             }
-
-            _currentLife -= damage;
         }
 
         public virtual void Heal(float healAmount)
@@ -50,5 +57,7 @@ namespace Entities
         {
             _maxLife = maxHealth;
         }
+
+        #endregion
     }
 }

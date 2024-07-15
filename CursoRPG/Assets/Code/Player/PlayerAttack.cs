@@ -32,6 +32,15 @@ namespace Player
         public Weapon EquippedWeapon { get; private set; }
         public EnemyInteraction TargetEnemy { get; private set;}
         public bool IsAttacking {get; private set;}
+
+        public float DamageDealt()
+        {
+            float amount = _playerStats.Damage;
+            if(Random.value < _playerStats.CriticalChance / 100.0f)
+                amount *= _playerStats.CriticalBonus;
+
+            return amount;
+        }
         
         #endregion
 
@@ -52,7 +61,10 @@ namespace Player
                 if(EquippedWeapon.WeaponType == WeaponType.Magic)
                     AttackWithRangeWeapon();
                 else
-                    Debug.Log("Melee attack not implemented yet");
+                {
+                    EnemyLife enemyLife = TargetEnemy.GetComponent<EnemyLife>();
+                    enemyLife.TakeDamage(DamageDealt());
+                }
                 
                 _nextAttackTime = Time.time + _rangeAttackSpeed;
                 StartCoroutine(SetAttackCondition());
@@ -127,7 +139,7 @@ namespace Player
             newProjectile.transform.position = _rangeAttackPositions[_rangeAttackDirection].position;
 
             Projectile projectile = newProjectile.GetComponent<Projectile>();
-            projectile.InitProjectile(TargetEnemy);
+            projectile.InitProjectile(this);
 
             projectile.gameObject.SetActive(true);
 
@@ -171,7 +183,7 @@ namespace Player
         }
 
         /// <summary>
-        /// Remove the selected enemy
+        /// Remove the selected enemy with the range weapon
         /// </summary>
         private void EnemyNotSelectedWithRangeWeapon()
         {
@@ -183,6 +195,9 @@ namespace Player
             Debug.Log("No target selected");
         }
 
+        /// <summary>
+        /// Remove the selected enemy with the melee weapon
+        /// </summary>
         private void EnemyNotSelectedWithMeleeWeapon()
         {
             if(TargetEnemy == null)

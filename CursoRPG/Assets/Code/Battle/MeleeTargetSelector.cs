@@ -29,6 +29,10 @@ namespace Battle
             if(other.CompareTag("Enemy"))
             {
                 TargetEnemy = other.GetComponent<EnemyInteraction>();
+
+                if(TargetEnemy.GetComponent<EnemyLife>().CurrentLife <= 0)
+                    return;
+
                 OnEnemyDetected?.Invoke(TargetEnemy);
             }
         }
@@ -37,6 +41,9 @@ namespace Battle
         {
             if(other.CompareTag("Enemy"))
             {
+                if(TargetEnemy.GetComponent<EnemyLife>().CurrentLife <= 0)
+                    return;
+                
                 OnEnemyLost?.Invoke();
             }
         }

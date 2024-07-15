@@ -1,18 +1,20 @@
-using Entities;
 using UnityEngine;
 
-public class EnemyMovement : WaypointMovement
+namespace Entities.AI
 {
-    protected override void MoveEntity()
+    public class EnemyMovement : WaypointMovement
     {
-        _transform.position = Vector3.MoveTowards(_transform.position, NextWaypointPoint, _speed * Time.deltaTime);
+        protected override void MoveEntity()
+        {
+            _transform.position = Vector3.MoveTowards(_transform.position, NextWaypointPoint, _speed * Time.deltaTime);
 
-            if(_transform.position == NextWaypointPoint)
+            if (_transform.position == NextWaypointPoint)
             {
                 _actualPointIndex = (_actualPointIndex + 1) % _waypoint.Points.Length;
                 _movementState = MovementState.Waiting;
                 _isOnPoint = true;
                 return;
             }
+        }
     }
 }

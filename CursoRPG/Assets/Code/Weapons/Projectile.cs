@@ -1,4 +1,5 @@
 using Entities.AI;
+using Player;
 using UnityEngine;
 
 namespace Weapons
@@ -12,6 +13,12 @@ namespace Weapons
         
         private Vector2 direction;
         private EnemyInteraction targetEnemy;
+        
+        #endregion
+
+        #region Properties
+
+        public PlayerAttack PlayerAttack { get; set; }
         
         #endregion
 
@@ -29,6 +36,8 @@ namespace Weapons
         {
             if (other.CompareTag("Enemy"))
             {
+                float damage = PlayerAttack.DamageDealt();
+                targetEnemy.GetComponent<EnemyLife>().TakeDamage(damage);
                 gameObject.SetActive(false);
             }
         }
@@ -41,9 +50,10 @@ namespace Weapons
         /// Initialize the projectile with the target enemy
         /// </summary>
         /// <param name="enemyInteraction"></param>
-        public void InitProjectile(EnemyInteraction enemyInteraction)
+        public void InitProjectile(PlayerAttack attack)
         {
-            targetEnemy = enemyInteraction;
+            PlayerAttack = attack;
+            targetEnemy = PlayerAttack.TargetEnemy;
         }
 
         /// <summary>

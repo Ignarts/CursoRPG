@@ -40,6 +40,12 @@ namespace Entities.AI
         {
             _selectedMeleeIndicator.SetActive(show);
         }
+
+        public void DeactivateSelectedIndicators()
+        {
+            ShowRangeSelectedIndicator(false);
+            ShowMeleeSelectedIndicator(false);
+        }
         
         #endregion
     }
