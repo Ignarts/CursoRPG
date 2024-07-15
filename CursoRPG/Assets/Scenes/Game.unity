@@ -604,6 +604,7 @@ GameObject:
   - component: {fileID: 82638253}
   - component: {fileID: 82638261}
   - component: {fileID: 82638262}
+  - component: {fileID: 82638263}
   m_Layer: 7
   m_Name: FireEnemy
   m_TagString: Enemy
@@ -811,6 +812,8 @@ Transform:
   - {fileID: 1312657824}
   - {fileID: 965796185}
   - {fileID: 1345796276}
+  - {fileID: 453961746}
+  - {fileID: 592340225}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &82638260
@@ -872,6 +875,22 @@ MonoBehaviour:
   _aiController: {fileID: 82638260}
   _enemyInteraction: {fileID: 82638261}
   _enemyMovement: {fileID: 82638253}
+--- !u!114 &82638263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82638252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44e329fb7eb51b84c805b1d71137286b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyHitVFX: {fileID: 2570464772460647765, guid: 3862289e5ebba334cbbcd3413cffb096, type: 3}
+  _canvasHitVFXPosition: {fileID: 453961746}
+  _objectPooler: {fileID: 592340224}
+  _hitVFXTime: 1.5
 --- !u!1001 &97974602
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3759,6 +3778,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3273220286991596872, guid: ac567bcf64e02b346abf77586740064f, type: 3}
   m_PrefabInstance: {fileID: 2339028722838933519}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &453961745
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 453961746}
+  m_Layer: 0
+  m_Name: DamageTextPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &453961746
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453961745}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.576, y: -0.37, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 82638259}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &463829201
 GameObject:
   m_ObjectHideFlags: 0
@@ -5152,6 +5202,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 584146307}
   m_CullTransparentMesh: 1
+--- !u!1 &592340223
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 592340225}
+  - component: {fileID: 592340224}
+  m_Layer: 0
+  m_Name: PoolerVFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &592340224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 592340223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc21986a5472c0e41bef131bcca501dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _poolSize: 10
+--- !u!4 &592340225
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 592340223}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 25.98, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 82638259}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &595624823
 PrefabInstance:
   m_ObjectHideFlags: 0

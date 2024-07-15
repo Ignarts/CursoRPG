@@ -1,14 +1,14 @@
 using System.Collections;
-using Entities.AI;
+using Player;
 using UnityEngine;
 
-namespace Player
+namespace Entities.AI
 {
-    public class PlayerVFX : MonoBehaviour
+    public class EnemyVFX : MonoBehaviour
     {
         #region Private Attributes
         
-        [SerializeField] private GameObject _playerHitVFX;
+        [SerializeField] private GameObject _enemyHitVFX;
         [SerializeField] private Transform _canvasHitVFXPosition;
         [SerializeField] private ObjectPooler _objectPooler;
         [SerializeField] private float _hitVFXTime = 1.5f;
@@ -19,24 +19,24 @@ namespace Player
 
         private void Start() 
         {
-            _objectPooler.CreatePooler(_playerHitVFX);
+            _objectPooler.CreatePooler(_enemyHitVFX);
         }
 
         private void OnEnable()
         {
-            AIController.OnDamageDealt += PlayPlayerHitVFX;
+            PlayerAttack.OnDealtDamage += PlayEnemyHitVFX;
         }
 
         private void OnDisable()
         {
-            AIController.OnDamageDealt -= PlayPlayerHitVFX;
+            PlayerAttack.OnDealtDamage -= PlayEnemyHitVFX;
         }
         
         #endregion
 
         #region Methods
 
-        private void PlayPlayerHitVFX(float amount)
+        private void PlayEnemyHitVFX(float amount)
         {
             StartCoroutine(PlayHitVFXCoroutine(amount));
         }

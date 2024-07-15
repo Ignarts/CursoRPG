@@ -38,6 +38,7 @@ namespace Weapons
             {
                 float damage = PlayerAttack.DamageDealt();
                 targetEnemy.GetComponent<EnemyLife>().TakeDamage(damage);
+                PlayerAttack.DealtDamageEvewnt();
                 gameObject.SetActive(false);
             }
         }

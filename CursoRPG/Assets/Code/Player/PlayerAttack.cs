@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Battle;
 using Entities.AI;
@@ -5,6 +6,7 @@ using Player.Scriptables;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Weapons;
+using Random = UnityEngine.Random;
 
 namespace Player
 {
@@ -44,6 +46,12 @@ namespace Player
         
         #endregion
 
+        #region Events
+
+        public static event Action<float> OnDealtDamage;
+        
+        #endregion
+
         #region MonoBehaviour Methods
 
         private void Update()
@@ -63,7 +71,9 @@ namespace Player
                 else
                 {
                     EnemyLife enemyLife = TargetEnemy.GetComponent<EnemyLife>();
-                    enemyLife.TakeDamage(DamageDealt());
+                    float damage = DamageDealt();
+                    enemyLife.TakeDamage(damage);
+                    OnDealtDamage?.Invoke(damage);
                 }
                 
                 _nextAttackTime = Time.time + _rangeAttackSpeed;
@@ -90,6 +100,14 @@ namespace Player
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// Event to deal damage to the enemy
+        /// </summary>
+        public void DealtDamageEvewnt()
+        {
+            OnDealtDamage?.Invoke(DamageDealt());
+        }
 
         /// <summary>
         /// Equip a weapon to the player
