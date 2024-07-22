@@ -56,6 +56,13 @@ namespace Battle
                 }
 
                 SelectedEnemy = hit.collider.GetComponent<EnemyInteraction>();
+                EnemyLife enemyLife = SelectedEnemy.GetComponent<EnemyLife>();
+
+                if(enemyLife.IsDefeated())
+                {
+                    LootManager.Instance.ShowLootPanel();
+                }
+                
                 OnEnemySelected?.Invoke(SelectedEnemy);
             }
         }

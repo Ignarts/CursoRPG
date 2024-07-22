@@ -7,12 +7,16 @@ namespace Entities.AI
     {
         #region Private Attributes
 
+        [Header("Enemy Life Configuration")]
         [SerializeField] private EnemyLifeBar _LifeBarPrefab;
         [SerializeField] private Transform _lifeBarPosition;
         [SerializeField] private SpriteRenderer _spriteRenderer;
         [SerializeField] private AIController _aiController;
         [SerializeField] private EnemyInteraction _enemyInteraction;
         [SerializeField] private EnemyMovement _enemyMovement;
+
+        [Header("Enemy Loot Configuration")]
+        [SerializeField] private GameObject _lootTracker;
 
         private EnemyLifeBar _lifeBar;
 
@@ -41,6 +45,8 @@ namespace Entities.AI
             base.Configure();
 
             CreateLifeBar();
+
+            _lootTracker.SetActive(false);
         }
 
         /// <summary>
@@ -68,6 +74,7 @@ namespace Entities.AI
             _enemyInteraction.DeactivateSelectedIndicators();
             _enemyMovement.enabled = false;
             _lifeBar.gameObject.SetActive(false);
+            _lootTracker.SetActive(true);
         }
 
         #endregion
