@@ -1,5 +1,6 @@
 using System;
 using Entities.AI;
+using Loot;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -60,7 +61,8 @@ namespace Battle
 
                 if(enemyLife.IsDefeated())
                 {
-                    LootManager.Instance.ShowLootPanel();
+                    EnemyLoot enemyLoot = SelectedEnemy.GetComponent<EnemyLoot>();
+                    LootManager.Instance.ShowLootPanel(enemyLoot);
                 }
                 
                 OnEnemySelected?.Invoke(SelectedEnemy);

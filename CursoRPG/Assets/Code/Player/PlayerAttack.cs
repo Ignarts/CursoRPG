@@ -178,7 +178,7 @@ namespace Player
         /// <param name="enemy"></param>
         private void EnemySelectedWithRangeWeapon(EnemyInteraction enemy)
         {
-            if(EquippedWeapon == null || EquippedWeapon.WeaponType == WeaponType.Melee || TargetEnemy == enemy)
+            if(EquippedWeapon == null || EquippedWeapon.WeaponType == WeaponType.Melee || TargetEnemy == enemy || enemy.GetComponent<EnemyLife>().IsDefeated())
                 return;
 
             TargetEnemy = enemy;
@@ -192,7 +192,7 @@ namespace Player
         /// <param name="enemy"></param>
         private void EnemySelectedWithMeleeWeapon(EnemyInteraction enemy)
         {
-            if(EquippedWeapon == null || EquippedWeapon.WeaponType == WeaponType.Magic)
+            if(EquippedWeapon == null || EquippedWeapon.WeaponType == WeaponType.Magic || enemy.GetComponent<EnemyLife>().IsDefeated())
                 return;
 
             TargetEnemy = enemy;
