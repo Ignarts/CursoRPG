@@ -907,6 +907,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d478d2d8bbcfaf4590e108f4c06c525, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _experience: 5
   _dropItemsAvailable:
   - ItemName: Health Potion
     Item: {fileID: 11400000, guid: bae3d0049f3696847aa236b349215adc, type: 2}
@@ -4859,6 +4860,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d478d2d8bbcfaf4590e108f4c06c525, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _experience: 5
   _dropItemsAvailable:
   - ItemName: Health Potion
     Item: {fileID: 11400000, guid: bae3d0049f3696847aa236b349215adc, type: 2}

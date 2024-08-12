@@ -10,6 +10,10 @@ namespace Loot
     {
         #region Private Attributes
 
+        [Header("Experience Configuration")]
+        [SerializeField] private float _experience;
+
+        [Header("Drop Items Configuration")]
         [SerializeField] private DropItem[] _dropItemsAvailable;
 
         private List<DropItem> _dropItemsSelected;
@@ -19,6 +23,7 @@ namespace Loot
         #region Properties
 
         public List<DropItem> DropItemsSelected => _dropItemsSelected;
+        public float Experience => _experience;
         
         #endregion
 

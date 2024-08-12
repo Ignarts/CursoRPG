@@ -1,4 +1,7 @@
+using System;
 using Loot;
+using Managers;
+using Quests;
 using UI;
 using UnityEngine;
 
@@ -22,6 +25,12 @@ namespace Entities.AI
 
         private EnemyLifeBar _lifeBar;
 
+        #endregion
+
+        #region Events
+
+        public static event Action<float> OnEnemyDefeated;
+        
         #endregion
 
         #region MonoBehaviour Methods
@@ -88,6 +97,9 @@ namespace Entities.AI
             _enemyMovement.enabled = false;
             _lifeBar.gameObject.SetActive(false);
             _lootTracker.SetActive(true);
+
+            OnEnemyDefeated?.Invoke(_enemyLoot.Experience);
+            ManagerConfiguration.Instance.QuestManager.AddProgress("Kill10Mobs", 1);
         }
 
         #endregion

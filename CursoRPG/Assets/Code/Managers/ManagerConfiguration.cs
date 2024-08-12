@@ -15,6 +15,12 @@ namespace Managers
 
         #endregion
 
+        #region Properties
+
+        public QuestManager QuestManager => _questManager;
+        
+        #endregion
+
         #region MonoBehaviour Methods
 
         private void Awake()

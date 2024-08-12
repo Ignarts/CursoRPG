@@ -1,4 +1,5 @@
 using System;
+using Entities.AI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -51,6 +52,16 @@ namespace Player
             {
                 AddExperience(1);
             }
+        }
+
+        private void OnEnable()
+        {
+            EnemyLife.OnEnemyDefeated += AddExperience;
+        }
+
+        private void OnDisable()
+        {
+            EnemyLife.OnEnemyDefeated -= AddExperience;
         }
 
         #endregion

@@ -85,16 +85,6 @@ namespace Quests
             UnclaimedQuest = quest;
         }
         
-        #endregion\
-
-        //!REMOVE THIS
-        private void Update()
-        {
-            if(Keyboard.current.oKey.wasPressedThisFrame)
-            {
-                AddProgress("Kill10Mobs", 1);
-            }
-        }
-        //!END OF REMOVE
+        #endregion
     }
 }
