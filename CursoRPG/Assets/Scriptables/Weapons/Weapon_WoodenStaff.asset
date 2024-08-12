@@ -17,5 +17,6 @@ MonoBehaviour:
   _weaponType: 1
   _weaponDamage: 8
   _manaRequired: 16
+  _projectilePrefab: {fileID: 4578343644957485708, guid: cae704d40f7b3324c93d58898614ec14, type: 3}
   _critChance: 0
   _blockChance: 1

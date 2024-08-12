@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -40,7 +41,7 @@ namespace Loot
             if(!_lootPanel.activeSelf)
                 return;
 
-            if (Keyboard.current.escapeKey.wasPressedThisFrame)
+            if (Keyboard.current.escapeKey.wasPressedThisFrame || IsContainerEmpty())
             {
                 HideLootPanel();
             }

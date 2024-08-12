@@ -37,8 +37,9 @@ namespace Weapons
             if (other.CompareTag("Enemy"))
             {
                 float damage = PlayerAttack.DamageDealt();
-                targetEnemy.GetComponent<EnemyLife>().TakeDamage(damage);
-                PlayerAttack.DealtDamageEvewnt();
+                EnemyLife enemyLife = targetEnemy.GetComponent<EnemyLife>();
+                enemyLife.TakeDamage(damage);
+                PlayerAttack.DealtDamageEvent(enemyLife);
                 gameObject.SetActive(false);
             }
         }

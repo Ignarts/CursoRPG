@@ -45,6 +45,17 @@ namespace Loot
                 }
             }
         }
+
+        public bool IsAllLootClaimed()
+        {
+            foreach (DropItem dropItem in _dropItemsSelected)
+            {
+                if (!dropItem.ItemPicked)
+                    return false;
+            }
+
+            return true;
+        }
         
         #endregion
     }

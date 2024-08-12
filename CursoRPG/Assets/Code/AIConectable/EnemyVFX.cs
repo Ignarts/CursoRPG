@@ -13,9 +13,16 @@ namespace Entities.AI
         [SerializeField] private ObjectPooler _objectPooler;
         [SerializeField] private float _hitVFXTime = 1.5f;
 
+        private EnemyLife _enemyLife;
+
         #endregion
 
         #region MonoBehaviour Methods
+
+        private void Awake()
+        {
+            _enemyLife = GetComponent<EnemyLife>();
+        }
 
         private void Start() 
         {
@@ -36,8 +43,11 @@ namespace Entities.AI
 
         #region Methods
 
-        private void PlayEnemyHitVFX(float amount)
+        private void PlayEnemyHitVFX(float amount, EnemyLife enemyLife)
         {
+            if(enemyLife != _enemyLife)
+                return;
+            
             StartCoroutine(PlayHitVFXCoroutine(amount));
         }
 

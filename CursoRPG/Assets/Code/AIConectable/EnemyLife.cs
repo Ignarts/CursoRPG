@@ -1,3 +1,4 @@
+using Loot;
 using UI;
 using UnityEngine;
 
@@ -14,6 +15,7 @@ namespace Entities.AI
         [SerializeField] private AIController _aiController;
         [SerializeField] private EnemyInteraction _enemyInteraction;
         [SerializeField] private EnemyMovement _enemyMovement;
+        [SerializeField] private EnemyLoot _enemyLoot;
 
         [Header("Enemy Loot Configuration")]
         [SerializeField] private GameObject _lootTracker;
@@ -30,6 +32,17 @@ namespace Entities.AI
         private void Awake()
         {
             Configure();
+        }
+
+        private void Update()
+        {
+            if(!_lootTracker.activeSelf)
+                return;
+            
+            if(_enemyLoot.IsAllLootClaimed())
+            {
+                _lootTracker.SetActive(false);
+            }
         }
         
         #endregion

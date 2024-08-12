@@ -1,4 +1,5 @@
 using TMPro;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -32,6 +33,19 @@ namespace Loot
 
             string itemText = dropItem.ItemName + " x" + dropItem.Amount;
             _itemName.text = itemText;
+        }
+
+        /// <summary>
+        /// Claims the drop item and adds it to the inventory.
+        /// </summary>
+        public void ClaimDropItem()
+        {
+            if(DropItem == null)
+                return;
+
+            Inventory.Instance.AddItem(DropItem.Item, DropItem.Amount);
+            DropItem.ItemPicked = true;
+            Destroy(gameObject);
         }
 
         #endregion

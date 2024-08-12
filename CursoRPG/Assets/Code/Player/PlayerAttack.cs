@@ -48,7 +48,7 @@ namespace Player
 
         #region Events
 
-        public static event Action<float> OnDealtDamage;
+        public static event Action<float, EnemyLife> OnDealtDamage;
         
         #endregion
 
@@ -73,7 +73,7 @@ namespace Player
                     EnemyLife enemyLife = TargetEnemy.GetComponent<EnemyLife>();
                     float damage = DamageDealt();
                     enemyLife.TakeDamage(damage);
-                    OnDealtDamage?.Invoke(damage);
+                    OnDealtDamage?.Invoke(damage, enemyLife);
                 }
                 
                 _nextAttackTime = Time.time + _rangeAttackSpeed;
@@ -104,9 +104,9 @@ namespace Player
         /// <summary>
         /// Event to deal damage to the enemy
         /// </summary>
-        public void DealtDamageEvewnt()
+        public void DealtDamageEvent(EnemyLife enemyLife)
         {
-            OnDealtDamage?.Invoke(DamageDealt());
+            OnDealtDamage?.Invoke(DamageDealt(), enemyLife);
         }
 
         /// <summary>

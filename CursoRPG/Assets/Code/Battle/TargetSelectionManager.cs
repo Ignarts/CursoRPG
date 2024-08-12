@@ -37,13 +37,21 @@ namespace Battle
         private void Update()
         {
             SelectEnemy();
+
+            if(SelectedEnemy != null && SelectedEnemy.GetComponent<EnemyLife>().IsDefeated())
+            {
+                SelectedEnemy = null;
+                OnTargetNotSelected?.Invoke();
+            }
         }
         
         #endregion
 
         #region Methods
 
-
+        /// <summary>
+        /// Select the enemy that the player clicked on
+        /// </summary>
         private void SelectEnemy()
         {
             if(Mouse.current.leftButton.wasPressedThisFrame)
