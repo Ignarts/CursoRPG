@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e50fb56231394e6479e9f19fa2cc4406, type: 3}
+  m_Name: Item_Scroll
+  m_EditorClassIdentifier: 
+  id: Scroll
+  _itemName: Scroll
+  _itemType: 2
+  _icon: {fileID: 21300000, guid: a39cb2759974a6e45b66955f431f287d, type: 3}
+  _description: Although it is a simple scroll, it is the basis for all other knowledge.
+  _isConsumable: 1
+  _isStackable: 1
+  _maxStackableAmount: 50

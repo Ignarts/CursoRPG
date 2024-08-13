@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Items
 {
-    [CreateAssetMenu(fileName = "ManaPotion", menuName = "Items/ManaPotion", order = 2)]
+    [CreateAssetMenu(fileName = "ManaPotion", menuName = "Items/ManaPotion", order = 3)]
     public class ManaPotionItem : InventoryItems
     {
         #region Private Attributes

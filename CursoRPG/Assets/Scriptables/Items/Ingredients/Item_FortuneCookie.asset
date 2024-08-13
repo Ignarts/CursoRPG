@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e50fb56231394e6479e9f19fa2cc4406, type: 3}
+  m_Name: Item_FortuneCookie
+  m_EditorClassIdentifier: 
+  id: FortuneCookie
+  _itemName: Fortune Cookie
+  _itemType: 3
+  _icon: {fileID: 1269268640068031738, guid: 30a3453b4e2d148468e448a103322afb, type: 3}
+  _description: What's better than being able to know something about your future
+    while eating a delicious cookie?
+  _isConsumable: 1
+  _isStackable: 1
+  _maxStackableAmount: 99

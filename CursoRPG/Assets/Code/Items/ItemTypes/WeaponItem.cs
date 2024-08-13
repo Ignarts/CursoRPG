@@ -1,10 +1,8 @@
-using Items;
-using UI;
 using UnityEngine;
 using Weapons;
 namespace Items
 {
-    [CreateAssetMenu(fileName = "Weapon", menuName = "Items/Weapon", order = 3)]
+    [CreateAssetMenu(fileName = "Weapon", menuName = "Items/Weapon", order = 4)]
     public class WeaponItem : InventoryItems
     {
         #region Private Attributes
