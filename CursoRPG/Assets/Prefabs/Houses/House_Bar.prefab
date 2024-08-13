@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2063717158721396119}
   - component: {fileID: 1846133440282706430}
-  - component: {fileID: 3385267624446220698}
+  - component: {fileID: 7753806475119404269}
   m_Layer: 0
   m_Name: House_Bar
   m_TagString: Untagged
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 476832167
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 6703208604283922957, guid: d0e9a71fb4a6dbe4380177ec1268dd90, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -85,8 +85,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &3385267624446220698
-BoxCollider2D:
+--- !u!60 &7753806475119404269
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -129,5 +129,16 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 4, y: 3}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: -1.9375, y: 1.5}
+      - {x: -2, y: 1.4375}
+      - {x: -2, y: -1.5}
+      - {x: -0.2044568, y: -1.5066094}
+      - {x: -0.1878488, y: 0.13294804}
+      - {x: 1.132297, y: 0.112249374}
+      - {x: 1.1343138, y: -1.4926888}
+      - {x: 2, y: -1.5}
+      - {x: 2, y: 1.4375}
+      - {x: 1.9375, y: 1.5}
+  m_UseDelaunayMesh: 0
