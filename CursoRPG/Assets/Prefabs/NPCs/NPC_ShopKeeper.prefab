@@ -191,6 +191,7 @@ GameObject:
   - component: {fileID: 5076374973287455836}
   - component: {fileID: 6317611724855525611}
   - component: {fileID: 1241220106198942939}
+  - component: {fileID: 804834950096370775}
   m_Layer: 0
   m_Name: NPC_ShopKeeper
   m_TagString: Untagged
@@ -253,8 +254,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 2078246657
-  m_SortingLayer: 6
+  m_SortingLayerID: 1426328573
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 4723107735738678597, guid: 9d04306e2f4d8ca4fbcdf2b5a4ec71d7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -313,6 +314,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.5865746, y: 1.8476617}
   m_EdgeRadius: 0
+--- !u!114 &804834950096370775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5232440710705397866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25a6ed8a1f9e05f43af66eae303eaf91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _npcDialog: {fileID: 11400000, guid: a1b8035973bfb254488eacc9c2de36d2, type: 2}
+  _interactionPanel: {fileID: 8476563266106368983}
 --- !u!1 &6171134125160838146
 GameObject:
   m_ObjectHideFlags: 0

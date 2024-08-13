@@ -436,7 +436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25a6ed8a1f9e05f43af66eae303eaf91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _npcDialog: {fileID: 11400000, guid: 7aa81781c4978e04db9de337a92a3490, type: 2}
+  _npcDialog: {fileID: 11400000, guid: 9e9107a230108fc4dbe85c8b79ee3218, type: 2}
   _interactionPanel: {fileID: 3219937685669108818}
 --- !u!1 &8884836292619365039
 GameObject:

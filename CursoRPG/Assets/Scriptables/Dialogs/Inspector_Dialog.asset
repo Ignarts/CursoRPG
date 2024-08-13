@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 99715d469410add448cd5eb50ebd9824, type: 3}
-  m_Name: Inspector_Dialog_001
+  m_Name: Inspector_Dialog
   m_EditorClassIdentifier: 
   _npcName: Mission Informer
   _npcSprite: {fileID: 21300000, guid: 69f7e6388bd25fb40bf2b55334c6e317, type: 3}

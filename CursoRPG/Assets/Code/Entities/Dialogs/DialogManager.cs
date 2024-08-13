@@ -22,6 +22,7 @@ namespace Entities.Dialogs
 
         [Title("Extra Types Interaction References")]
         [SerializeField] private QuestsPanel _questsPanel;
+        [SerializeField] private ShopPanel _shopPanel;
 
         private NPCDialog _currentDialog;
         private Queue<string> _dialogLines;
@@ -186,6 +187,10 @@ namespace Entities.Dialogs
                 case DialogExtraTypes.Quest:
                     _questsPanel.ShowQuestsPanel();
                     break;
+                case DialogExtraTypes.Shop:
+                    _shopPanel.ShowShopPanel();
+                    break;
+
             }
         }
         
