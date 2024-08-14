@@ -1,3 +1,4 @@
+using UI;
 using UnityEngine;
 
 namespace Shop
@@ -9,6 +10,7 @@ namespace Shop
         [Header("Configuration")]
         [SerializeField] private ShopItemButton _itemButtonPrefab;
         [SerializeField] private Transform _itemsContainer;
+        [SerializeField] private PlayerGoldManager _playerGoldManager;
 
         [Header("Shop Items")]
         [SerializeField] private ShopItem[] _shopItemsAvailable;
@@ -34,7 +36,7 @@ namespace Shop
             foreach (ShopItem item in _shopItemsAvailable)
             {
                 ShopItemButton itemButton = Instantiate(_itemButtonPrefab, _itemsContainer);
-                itemButton.ConfigureItemToSell(item);
+                itemButton.ConfigureItemToSell(item, _playerGoldManager);
             }
         }
 

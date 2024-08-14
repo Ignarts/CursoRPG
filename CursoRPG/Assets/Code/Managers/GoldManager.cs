@@ -74,6 +74,8 @@ public class GoldManager : MonoBehaviour
         PlayerPrefs.SetInt(GOLD_KEY, _totalGold);
 
         SaveGold();
+
+        Debug.Log($"Gold added: <color=yellow>{gold}</color>");
     }
 
     /// <summary>
@@ -88,6 +90,7 @@ public class GoldManager : MonoBehaviour
             _totalGold = 0;
 
         SaveGold();
+        Debug.Log($"Gold removed: <color=yellow>{gold}</color>");
     }
 
     /// <summary>

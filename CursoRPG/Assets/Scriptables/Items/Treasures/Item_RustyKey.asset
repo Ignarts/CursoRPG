@@ -15,7 +15,7 @@ MonoBehaviour:
   id: RustyKey
   _itemName: Rusty Key
   _itemType: 4
-  _icon: {fileID: -4625579906778017783, guid: 90bf3c7873fc9c943ba6a6365c0ec92c, type: 3}
+  _icon: {fileID: 21300000, guid: 90bf3c7873fc9c943ba6a6365c0ec92c, type: 3}
   _description: An old and rusty key. It can still be useful
   _isConsumable: 0
   _isStackable: 0

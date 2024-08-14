@@ -15,7 +15,7 @@ MonoBehaviour:
   id: GoldenKey
   _itemName: Golden Key
   _itemType: 4
-  _icon: {fileID: 5773812629600554277, guid: 3779019b0a25f504e87b2b2f0212cb19, type: 3}
+  _icon: {fileID: 21300000, guid: 3779019b0a25f504e87b2b2f0212cb19, type: 3}
   _description: A key decorated with drawings of lions. We do not know which door
     it can open
   _isConsumable: 0

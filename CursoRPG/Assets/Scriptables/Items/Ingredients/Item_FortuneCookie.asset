@@ -15,7 +15,7 @@ MonoBehaviour:
   id: FortuneCookie
   _itemName: Fortune Cookie
   _itemType: 3
-  _icon: {fileID: 1269268640068031738, guid: 30a3453b4e2d148468e448a103322afb, type: 3}
+  _icon: {fileID: 21300000, guid: 30a3453b4e2d148468e448a103322afb, type: 3}
   _description: What's better than being able to know something about your future
     while eating a delicious cookie?
   _isConsumable: 1

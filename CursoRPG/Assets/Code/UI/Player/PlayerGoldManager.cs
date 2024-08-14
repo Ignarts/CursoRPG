@@ -11,6 +11,14 @@ namespace UI
 
         [SerializeField] private TextMeshProUGUI _goldText;
 
+        private int _gold;
+
+        #endregion
+
+        #region Properties
+
+        public int Gold => _gold;
+        
         #endregion
 
         #region MonoBehaviour Methods
@@ -31,7 +39,8 @@ namespace UI
 
         public void UpdateGoldText(int gold)
         {
-            _goldText.text = gold.ToString();
+            _gold = gold;
+            _goldText.text = _gold.ToString();
         }
         
         #endregion

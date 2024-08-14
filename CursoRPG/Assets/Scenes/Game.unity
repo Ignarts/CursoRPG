@@ -5328,6 +5328,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemButtonPrefab: {fileID: 1325483627261528183, guid: a6177c50f8fbb7644981c96f5154dd11, type: 3}
   _itemsContainer: {fileID: 1780891242}
+  _playerGoldManager: {fileID: 1944188410}
   _shopItemsAvailable:
   - _itemName: Scrool
     _item: {fileID: 11400000, guid: 84fa81fdaedd90e4a9aa44d6c61bebd6, type: 2}
@@ -5344,6 +5345,12 @@ MonoBehaviour:
   - _itemName: Wooden Staff
     _item: {fileID: 11400000, guid: 46d5978ad9c577742ae3fae187b3c1b8, type: 2}
     _itemPrice: 500
+  - _itemName: Fish
+    _item: {fileID: 11400000, guid: cb2089f5260774d43aa43b019a9b3dc0, type: 2}
+    _itemPrice: 0
+  - _itemName: Meat
+    _item: {fileID: 11400000, guid: 55e04df00b22e744e9739218f95d70b1, type: 2}
+    _itemPrice: 0
 --- !u!1 &513589598
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,7 +15,7 @@ MonoBehaviour:
   id: GoldCup
   _itemName: Gold Cup
   _itemType: 4
-  _icon: {fileID: 23180460572281732, guid: 653c5fed2e3d9d04e91e05440997f3ec, type: 3}
+  _icon: {fileID: 21300000, guid: 653c5fed2e3d9d04e91e05440997f3ec, type: 3}
   _description: A relic of forgotten times. It was said to contain enormous power,
     but has been lost for many years
   _isConsumable: 0
