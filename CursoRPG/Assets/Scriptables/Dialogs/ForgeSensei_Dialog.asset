@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ForgeSensei_Dialog
   m_EditorClassIdentifier: 
   _npcName: Crafting Sensei
-  _npcSprite: {fileID: 21300000, guid: ff4c013580c2bdc44951f3dc4efdbeb3, type: 3}
+  _npcSprite: {fileID: 21300000, guid: 31afba58e7749354e84d6e68734e44c1, type: 3}
   _hasExtraType: 1
   _dialogExtraType: 2
   _dialog:

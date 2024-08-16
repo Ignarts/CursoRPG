@@ -23,6 +23,7 @@ namespace Entities.Dialogs
         [Title("Extra Types Interaction References")]
         [SerializeField] private QuestsPanel _questsPanel;
         [SerializeField] private ShopPanel _shopPanel;
+        [SerializeField] private CraftingPanel _craftingPanel;
 
         private NPCDialog _currentDialog;
         private Queue<string> _dialogLines;
@@ -180,6 +181,10 @@ namespace Entities.Dialogs
             _isTyping = false;
         }
 
+        /// <summary>
+        /// Open extra type interaction panel
+        /// </summary>
+        /// <param name="dialogExtraType"></param>
         private void OpenExtraTypeInteractionPanel(DialogExtraTypes dialogExtraType)
         {
             switch(dialogExtraType)
@@ -190,7 +195,9 @@ namespace Entities.Dialogs
                 case DialogExtraTypes.Shop:
                     _shopPanel.ShowShopPanel();
                     break;
-
+                case DialogExtraTypes.Crafting:
+                    _craftingPanel.ShowCraftingPanel();
+                    break;
             }
         }
         
