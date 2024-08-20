@@ -205,6 +205,16 @@ namespace UI
             return totalAmount;
         }
 
+        public void RemoveItemOnCrafting(string itemID)
+        {
+            List<int> indexes = VerifyStocks(itemID);
+
+            if(indexes.Count <= 0)
+                return;
+
+            _inventoryItems[indexes[0]].RemoveStackableAmount(1);
+        } 
+
         /// <summary>
         /// Use item from the inventory
         /// </summary>

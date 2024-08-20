@@ -56,12 +56,13 @@ namespace Shop
             if(_playerGoldManager.Gold < _totalPrice)
                 return;
 
+            Debug.Log($"Item <color=green>{ItemLoaded.ItemName}</color> bought x{_amount}");
+            
             Inventory.Instance.AddItem(ItemLoaded.Item, _amount);
             GoldManager.Instance.RemoveGold(_totalPrice);
             _amount = 1;
             _totalPrice = _startPrice;
 
-            Debug.Log($"Item <color=green>{ItemLoaded.ItemName}</color> bought x{_amount}");
         }
 
         /// <summary>
