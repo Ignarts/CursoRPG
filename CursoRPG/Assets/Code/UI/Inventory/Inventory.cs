@@ -188,6 +188,24 @@ namespace UI
         }
 
         /// <summary>
+        /// Get the amount of items of the same type
+        /// </summary>
+        /// <param name="itemID"></param>
+        /// <returns></returns>
+        public int GetItemAmount(string itemID)
+        {
+            List<int> indexes = VerifyStocks(itemID);
+            int totalAmount = 0;
+            
+            foreach (int index in indexes)
+            {
+                totalAmount += _inventoryItems[index].CurrentStackableAmount;
+            }
+
+            return totalAmount;
+        }
+
+        /// <summary>
         /// Use item from the inventory
         /// </summary>
         /// <param name="index"></param>

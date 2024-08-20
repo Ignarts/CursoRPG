@@ -22239,6 +22239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _craftingPanel: {fileID: 2131089253}
+  _craftingInfoPanel: {fileID: 932383462}
 --- !u!1 &1450546595
 GameObject:
   m_ObjectHideFlags: 0
@@ -25014,6 +25015,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _recipeButtonPrefab: {fileID: 4415706693475043064, guid: 145eb68cb64b337408f4a9057de3251e, type: 3}
   _recipeButtonContainer: {fileID: 985448166}
+  _craftingPanel: {fileID: 1445592193}
+  _firstIngredientAttributes:
+    Icon: {fileID: 1063660562}
+    Name: {fileID: 81379874}
+    Amount: {fileID: 1614666703}
+  _secondIngredientAttributes:
+    Icon: {fileID: 134581491}
+    Name: {fileID: 996932977}
+    Amount: {fileID: 135435350}
+  _notEnoughtManterialButton: {fileID: 2078488010}
   _recipes: {fileID: 11400000, guid: 2ee667828f903d648a709a475be36912, type: 2}
 --- !u!1 &1701474306
 GameObject:
