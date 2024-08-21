@@ -38,6 +38,7 @@ namespace UI
                 return;
 
             PlayerQuestManager.Instance.AddQuestToActive(QuestLoaded);
+            QuestLoaded.AcceptQuest();
             Destroy(gameObject);
         }
 

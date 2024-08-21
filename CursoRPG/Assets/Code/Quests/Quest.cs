@@ -23,6 +23,7 @@ namespace Quests
 
         private int _currentObjectiveCount;
         private bool _isQuestCompleted;
+        private bool _isQuestActive;
 
         #endregion
 
@@ -37,6 +38,7 @@ namespace Quests
         public int ExperienceReward => _experienceReward;
         public QuestRewardItem[] QuestRewardItems => _questRewardItems;
         public bool IsQuestCompleted => _isQuestCompleted;
+        public bool IsQuestActive => _isQuestActive;
 
         #endregion
 
@@ -48,6 +50,14 @@ namespace Quests
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// Set the quest as active
+        /// </summary>
+        public void AcceptQuest()
+        {
+            _isQuestActive = true;
+        }
 
         /// <summary>
         /// Set the quest as active
@@ -84,6 +94,9 @@ namespace Quests
             OnQuestCompleted?.Invoke(this);
         }
 
+        /// <summary>
+        /// Reset the quest progress
+        /// </summary>
         public void ResetQuest()
         {
             _currentObjectiveCount = 0;

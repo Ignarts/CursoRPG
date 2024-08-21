@@ -68,7 +68,8 @@ namespace Quests
             Quest quest = _questsAvailable.Find(q => q.Id == questID);
             Assert.IsNotNull(quest, $"Quest with id <color=yellow>{questID}</color> not found");
 
-            if(quest.IsQuestCompleted)
+            // Check if the quest is completed or not active yet to add progress
+            if(quest.IsQuestCompleted || !quest.IsQuestActive)
                 return;
 
             quest.AddObjectiveCount(amount);
