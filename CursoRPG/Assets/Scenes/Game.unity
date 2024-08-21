@@ -25710,6 +25710,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44218b7b069080a47a30c899d150fb64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _inventoryStore: {fileID: 11400000, guid: db7c0bf6fc3d6a945af733949668b79c, type: 2}
   _player: {fileID: 1296822305}
   _uiInventory: {fileID: 1755330627}
   _inventoryItems: []

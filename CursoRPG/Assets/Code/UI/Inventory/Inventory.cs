@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using BayatGames.SaveGameFree;
+using Data;
 using Items;
 using Player;
 using UI.Buttons;
@@ -13,6 +15,8 @@ namespace UI
 
         #region Private Attribtues
 
+        [SerializeField] private InventoryStore _inventoryStore;
+
         [Header("Player")]
         [SerializeField] private CharacterMovement _player;
 
@@ -23,6 +27,7 @@ namespace UI
         [SerializeField] private InventoryItems[] _inventoryItems;
 
         private const int SLOTS_NUMBER = 24;
+        private readonly string INVENTORY_KEY = "Inventory";
         
         #endregion
 
@@ -88,10 +93,12 @@ namespace UI
             {
                 amount = AddNewItem(item, amount);
 
+                SaveInventory();
                 return;
             }
 
             AddExistingItem(item, amount, indexes);
+            SaveInventory();
         }
 
         /// <summary>
@@ -112,7 +119,7 @@ namespace UI
             {
                 AddItemInAvailableSlot(item, amount);
             }
-
+    
             return amount;
         }
 
@@ -213,6 +220,7 @@ namespace UI
                 return;
 
             _inventoryItems[indexes[0]].RemoveStackableAmount(1);
+            SaveInventory();
         } 
 
         /// <summary>
@@ -238,6 +246,8 @@ namespace UI
                     _uiInventory.ShowItemOnInventory(_inventoryItems[index], _inventoryItems[index].CurrentStackableAmount, index);
                 }
             }
+
+            SaveInventory();
         }
 
         /// <summary>
@@ -294,6 +304,42 @@ namespace UI
 
             // show null item on initial slot
             _uiInventory.ShowItemOnInventory(null, 0, initialSlotIndex);
+
+            SaveInventory();
+        }
+        
+        #endregion
+
+        #region Save Data
+
+        private void SaveInventory()
+        {
+            // Create a new inventory data and initialize it
+            InventoryData savedInventoryData = new InventoryData
+            {
+                ItemIDData = new string[SLOTS_NUMBER],
+                ItemAmountData = new int[SLOTS_NUMBER]
+            };
+
+            for (int i = 0; i < SLOTS_NUMBER; i++)
+            {
+                if (_inventoryItems[i] == null || string.IsNullOrEmpty(_inventoryItems[i].Id))
+                {
+                    savedInventoryData.ItemIDData[i] = string.Empty;
+                    savedInventoryData.ItemAmountData[i] = 0;
+                    return;
+                }
+
+                savedInventoryData.ItemIDData[i] = _inventoryItems[i].Id;
+                savedInventoryData.ItemAmountData[i] = _inventoryItems[i].CurrentStackableAmount;
+            }
+
+            SaveGame.Save(INVENTORY_KEY, savedInventoryData);
+        }
+
+        private void LoadInventory()
+        {
+
         }
         
         #endregion
