@@ -34,7 +34,6 @@ namespace Managers
             _playerManaManager.Configure(_playerMana);
             _playerExperienceManager.Configure(_playerExperience);
             _playerStatsPanel.Configure(_playerStats.PlayerStats);
-            _inventory.Configure();
         }
 
         #endregion

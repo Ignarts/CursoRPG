@@ -28,6 +28,9 @@ namespace UI
 
         private const int SLOTS_NUMBER = 24;
         private readonly string INVENTORY_KEY = "Inventory";
+
+        private InventoryData savedInventoryData;
+        private InventoryData dataLoaded;
         
         #endregion
 
@@ -52,6 +55,12 @@ namespace UI
 
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            _uiInventory.Configure(SLOTS_NUMBER);
+        }
+
+        private void Start()
+        {
+            Configure();
         }
 
         private void OnEnable()
@@ -70,8 +79,9 @@ namespace UI
 
         public void Configure()
         {
-            _uiInventory.Configure(SLOTS_NUMBER);
             _inventoryItems = new InventoryItems[SLOTS_NUMBER];
+            // SaveGame.DeleteAll();  //!
+            LoadInventory();
         }
 
         /// <summary>
@@ -312,10 +322,23 @@ namespace UI
 
         #region Save Data
 
+        private InventoryItems GetItemOnStore(string itemID)
+        {
+            foreach (InventoryItems item in _inventoryStore.InventoryItems)
+            {
+                if (item.Id == itemID)
+                {
+                    return item;
+                }
+            }
+
+            return null;
+        }
+
         private void SaveInventory()
         {
             // Create a new inventory data and initialize it
-            InventoryData savedInventoryData = new InventoryData
+            savedInventoryData = new InventoryData
             {
                 ItemIDData = new string[SLOTS_NUMBER],
                 ItemAmountData = new int[SLOTS_NUMBER]
@@ -327,7 +350,7 @@ namespace UI
                 {
                     savedInventoryData.ItemIDData[i] = string.Empty;
                     savedInventoryData.ItemAmountData[i] = 0;
-                    return;
+                    continue;
                 }
 
                 savedInventoryData.ItemIDData[i] = _inventoryItems[i].Id;
@@ -335,11 +358,34 @@ namespace UI
             }
 
             SaveGame.Save(INVENTORY_KEY, savedInventoryData);
+            Debug.Log("<color=green>Data saved</color>");
         }
 
         private void LoadInventory()
         {
+            if(!SaveGame.Exists(INVENTORY_KEY))
+                return;
 
+            dataLoaded = SaveGame.Load<InventoryData>(INVENTORY_KEY);
+            for (int i = 0; i < SLOTS_NUMBER; i++)
+            {
+                if(dataLoaded.ItemIDData[i] == null || string.IsNullOrEmpty(dataLoaded.ItemIDData[i]))
+                {
+                    _inventoryItems[i] = null;
+                    _uiInventory.ShowItemOnInventory(null, 0, i);
+                    continue;
+                }
+
+                InventoryItems itemOnStore = GetItemOnStore(dataLoaded.ItemIDData[i]);
+                if(itemOnStore == null)
+                    continue;
+
+                _inventoryItems[i] = itemOnStore.InventoryItemInstance();
+                _inventoryItems[i].SetAmount(dataLoaded.ItemAmountData[i]);
+                _uiInventory.ShowItemOnInventory(_inventoryItems[i], _inventoryItems[i].CurrentStackableAmount, i);
+            }
+
+            Debug.Log("<color=yellow>Data loaded</color>");
         }
         
         #endregion
